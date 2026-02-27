@@ -1,0 +1,7 @@
+.assets
+.DS_Store
+.playwright-mcp/
+.claude/
+other-websites/
+list-users.csv
+saisei-index.html
