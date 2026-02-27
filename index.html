@@ -4,6 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AF Theatricals – Where Community Takes Center Stage</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="AF Theatricals is a New York City experiential production company creating immersive events, curated salons, theatrical performances, and AI-powered cultural gatherings.">
+  <link rel="canonical" href="https://aftheatricals.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AF Theatricals – Where Community Takes Center Stage">
+  <meta property="og:description" content="Experiential production company creating immersive events, curated salons, and cultural gatherings in New York City.">
+  <meta property="og:image" content="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero2.jpg">
+  <meta property="og:url" content="https://aftheatricals.com/">
+  <meta property="og:site_name" content="AF Theatricals">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AF Theatricals – Where Community Takes Center Stage">
+  <meta name="twitter:description" content="Experiential production company creating immersive events, curated salons, and cultural gatherings in NYC.">
+  <meta name="twitter:image" content="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero2.jpg">
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://pub-43545990593741a6b5e64edec34eabee.r2.dev" crossorigin>
+  <link rel="dns-prefetch" href="https://pub-43545990593741a6b5e64edec34eabee.r2.dev">
+
+  <!-- Preload LCP hero image -->
+  <link rel="preload" as="image" href="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero2.jpg">
+
   <style>
     /* ===== GOLDEN RATIO SPACING SYSTEM ===== */
     :root {
@@ -2074,6 +2100,66 @@
       }
     }
   </style>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AF Theatricals",
+    "url": "https://aftheatricals.com",
+    "logo": "https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/logos/color-secondary.png",
+    "email": "hello@aftheatricals.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.instagram.com/aftheatricals",
+      "https://www.linkedin.com/company/aftheatricals",
+      "https://www.facebook.com/aftheatricals"
+    ],
+    "description": "AF Theatricals is a New York City experiential production company creating immersive events, curated salons, theatrical performances, and AI-powered cultural gatherings."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TheaterEvent",
+    "name": "Peppino Impastato",
+    "startDate": "2026-04-17",
+    "location": {
+      "@type": "Place",
+      "name": "New York City",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "addressCountry": "US"
+      }
+    },
+    "url": "https://peppinoimpastatoshow.com",
+    "organizer": {
+      "@type": "Organization",
+      "name": "AF Theatricals",
+      "url": "https://aftheatricals.com"
+    },
+    "description": "A powerful theatrical exploration of courage, justice, and standing up against oppression. The story of Peppino Impastato comes to life on stage in an unforgettable one-night performance."
+  }
+  </script>
+
+  <!-- Noscript fallback styles -->
+  <noscript>
+    <style>
+      .cursor-dot { display: none !important; }
+      *, *::before, *::after { cursor: auto !important; }
+      .reveal-up, .reveal-mask, .reveal-scale, .reveal-editorial,
+      .split-text .char { opacity: 1 !important; transform: none !important; }
+      .hero-accent, .hero-description, .hero-scroll { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
 </head>
 <body>
 
@@ -2083,7 +2169,7 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar" id="navbar">
     <a href="/" class="navbar-logo">
-      <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/logos/color-secondary.png" alt="AF Theatricals">
+      <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/logos/color-secondary.png" alt="AF Theatricals" width="180" height="60">
     </a>
     <span class="navbar-tagline">Experiences &bull; Community &bull; Culture</span>
     <button class="navbar-menu-btn" aria-label="Open navigation menu">
@@ -2092,17 +2178,6 @@
       <span></span>
     </button>
   </nav>
-  <script>
-    // Hide navbar immediately if page is scrolled near bottom (prevents flash on refresh)
-    (function() {
-      var n = document.getElementById('navbar');
-      var docH = document.documentElement.scrollHeight;
-      var winH = window.innerHeight;
-      if (window.scrollY + winH >= docH - 100) {
-        n.style.transform = 'translateY(-100%)';
-      }
-    })();
-  </script>
 
   <!-- ===== FULLSCREEN MENU ===== -->
   <div class="menu-overlay" id="menuOverlay">
@@ -2123,8 +2198,8 @@
         <span>New York City</span>
       </div>
       <div class="menu-footer-col" style="align-items: flex-end;">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
+        <a href="https://www.instagram.com/aftheatricals" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.facebook.com/aftheatricals" target="_blank" rel="noopener noreferrer">Facebook</a>
       </div>
     </div>
   </div>
@@ -2149,20 +2224,20 @@
     <section class="hero" id="home">
       <div class="hero-bg" id="heroBg">
         <div class="hero-bg-panel hero-bg-panel--left">
-          <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero3.jpg" alt="AF Theatricals experience"></div>
+          <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero3.jpg" alt="AF Theatricals experience" fetchpriority="high" width="1920" height="1280"></div>
         </div>
         <div class="hero-bg-panel hero-bg-panel--center">
-          <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero2.jpg" alt="AF Theatricals community"></div>
+          <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero2.jpg" alt="AF Theatricals community" fetchpriority="high" width="1920" height="1280"></div>
         </div>
         <div class="hero-bg-panel hero-bg-panel--right">
-          <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/disco.jpg" alt="AF Theatricals event"></div>
+          <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/disco.jpg" alt="AF Theatricals event" fetchpriority="high" width="1920" height="1280"></div>
         </div>
       </div>
       <div class="hero-content">
         <div class="hero-title-wrap">
         </div>
         <div class="hero-right">
-          <div class="hero-accent" id="heroAccent">Where Community Takes Center Stage</div>
+          <h1 class="hero-accent" id="heroAccent">Where Community Takes Center Stage</h1>
           <p class="hero-description" id="heroDesc">We produce immersive experiences that bring people together &mdash; from intimate salons to thought-provoking conversations on AI and culture. Every gathering is a production.</p>
           <span class="hero-scroll" id="heroScroll"><span class="hero-scroll-line"></span> Scroll</span>
         </div>
@@ -2173,25 +2248,25 @@
     <div class="logo-carousel">
       <div class="logo-carousel-label">Trusted by</div>
       <div class="logo-carousel-track">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/greycroft.png" alt="Greycroft">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/hadron.png" alt="Hadron">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/italian american museum.png" alt="Italian American Museum">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/nyb.webp" alt="NYB">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/sei-labs-foundation.png" alt="Sei Labs Foundation">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/solana.png" alt="Solana">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/westport country playhouse.png" alt="Westport Country Playhouse">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/LRF-consulting.png" alt="LRF Consulting">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/aisocratic.png" alt="AISocratic">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/greycroft.png" alt="Greycroft" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/hadron.png" alt="Hadron" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/italian american museum.png" alt="Italian American Museum" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/nyb.webp" alt="NYB" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/sei-labs-foundation.png" alt="Sei Labs Foundation" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/solana.png" alt="Solana" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/westport country playhouse.png" alt="Westport Country Playhouse" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/LRF-consulting.png" alt="LRF Consulting" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/aisocratic.png" alt="AISocratic" loading="lazy" width="200" height="80">
         <!-- duplicate set for seamless loop -->
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/greycroft.png" alt="Greycroft">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/hadron.png" alt="Hadron">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/italian american museum.png" alt="Italian American Museum">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/nyb.webp" alt="NYB">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/sei-labs-foundation.png" alt="Sei Labs Foundation">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/solana.png" alt="Solana">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/westport country playhouse.png" alt="Westport Country Playhouse">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/LRF-consulting.png" alt="LRF Consulting">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/aisocratic.png" alt="AISocratic">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/greycroft.png" alt="Greycroft" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/hadron.png" alt="Hadron" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/italian american museum.png" alt="Italian American Museum" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/nyb.webp" alt="NYB" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/sei-labs-foundation.png" alt="Sei Labs Foundation" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/solana.png" alt="Solana" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/westport country playhouse.png" alt="Westport Country Playhouse" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/LRF-consulting.png" alt="LRF Consulting" loading="lazy" width="200" height="80">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/aisocratic.png" alt="AISocratic" loading="lazy" width="200" height="80">
       </div>
     </div>
 
@@ -2206,7 +2281,7 @@
           <a href="#" class="btn btn-primary"><span>Learn More</span></a>
         </div>
         <div class="story-image-wrap reveal-mask" data-delay="3" data-parallax="0.12">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8845.jpg" alt="AF Theatricals team" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8845.jpg" alt="AF Theatricals team" loading="lazy" width="800" height="533">
         </div>
       </div>
     </section>
@@ -2220,7 +2295,7 @@
 
       <div class="upcoming-card">
         <div class="upcoming-card-image reveal-mask" data-delay="1">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/theater/peppino-impastato.png" alt="Peppino Impastato" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/theater/peppino-impastato.png" alt="Peppino Impastato" loading="lazy" width="600" height="900">
         </div>
         <div class="upcoming-card-info reveal-up" data-delay="2">
           <div class="upcoming-card-date">April 17, 2026 &mdash; New York City</div>
@@ -2234,7 +2309,7 @@
     <!-- ===== EDITORIAL IMAGE BREAK ===== -->
     <div class="editorial-break">
       <div class="editorial-break-img" data-parallax="0.2">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9833.jpg" alt="The Women's Salon atmosphere" loading="lazy">
+        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9833.jpg" alt="The Women's Salon atmosphere" loading="lazy" width="1200" height="800">
       </div>
       <div class="editorial-break-overlay">
         <div class="editorial-break-text reveal-editorial" style="text-align:left">The Art<br><em>of</em> Gathering</div>
@@ -2251,31 +2326,31 @@
 
       <div class="showcase-grid-a">
         <div class="showcase-item reveal-scale" data-description="The electricity of opening night — where months of preparation culminate in a shared moment of anticipation and celebration.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8867.jpg" alt="Live event atmosphere" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8867.jpg" alt="Live event atmosphere" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Opening Night</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="1" data-description="An intimate gathering where guests connect over shared passions, great conversation, and the warmth of community.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8872.jpg" alt="Event gathering" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8872.jpg" alt="Event gathering" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">The Gathering</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="2" data-description="At the heart of every event is community — people coming together to experience something meaningful.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8829.jpg" alt="Community event" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8829.jpg" alt="Community event" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Community</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="3" data-description="Live performance that captivates — bringing energy, emotion, and artistry to the stage.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8937.jpg" alt="Live performance" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8937.jpg" alt="Live performance" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">On Stage</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="4" data-description="The final bow — a moment of gratitude shared between performers and audience as the curtain falls.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8953.jpg" alt="Cast on stage" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8953.jpg" alt="Cast on stage" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Curtain Call</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="5" data-description="Behind every seamless event is meticulous production — lighting, sound, and staging brought together with care.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8940.jpg" alt="Stage production" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/319A8940.jpg" alt="Stage production" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Production</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="6" data-description="A special evening hosted in collaboration with the New York Theater Barn, bridging communities through the performing arts.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/nytb%20-%20event.jpg" alt="NYTB Event" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/nytb%20-%20event.jpg" alt="NYTB Event" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">NYTB Event</span>
         </div>
       </div>
@@ -2291,19 +2366,19 @@
 
       <div class="showcase-grid-b">
         <div class="showcase-item reveal-scale" data-description="Behind the scenes with the talented ensemble cast at Westport Country Playhouse, where collaboration and craft come together on stage.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/THC-L-theatre-people-westport-1.jpg.webp" alt="Theatre people at Westport" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/THC-L-theatre-people-westport-1.jpg.webp" alt="Theatre people at Westport" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">The Cast</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="1" data-description="A fresh reimagining of the classic detective story, brought to life at Westport Country Playhouse with mystery, humor, and holiday spirit.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/Westport-Country-Playhouse-A-Sherlock-Carol-1.jpg.webp" alt="A Sherlock Carol at Westport Country Playhouse" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/Westport-Country-Playhouse-A-Sherlock-Carol-1.jpg.webp" alt="A Sherlock Carol at Westport Country Playhouse" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">A Sherlock Carol</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="2" data-description="The heart of every production — the people who bring stories to life through dedication, passion, and artistry.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/theater-people-2.jpg" alt="Theater people" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/theater-people-2.jpg" alt="Theater people" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Theater People</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="3" data-description="An intimate stage reading where new works find their voice, connecting writers, actors, and audiences in the earliest moments of creation.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/stage-reading.jpg" alt="Stage reading" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/stage-reading.jpg" alt="Stage reading" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Stage Reading</span>
         </div>
       </div>
@@ -2319,23 +2394,23 @@
 
       <div class="showcase-grid-c">
         <div class="showcase-item reveal-scale" data-description="Cinematic production captured in motion — the craft of filmmaking brought to life through light, composition, and storytelling.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM08374-Enhanced-NR%20copy.jpg" alt="Film production" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM08374-Enhanced-NR%20copy.jpg" alt="Film production" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Production</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="1" data-description="Behind the scenes on set — where the magic happens before the cameras roll and every detail is carefully considered.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM00148-Enhanced-NR%20copy.jpg" alt="On set" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM00148-Enhanced-NR%20copy.jpg" alt="On set" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">On Set</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="2" data-description="A cinematic moment frozen in time — the intersection of performance, direction, and visual artistry.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM00658-Enhanced-NR%20copy.jpg" alt="Cinematic moment" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM00658-Enhanced-NR%20copy.jpg" alt="Cinematic moment" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Cinematic</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="3" data-description="Oh, Victoria! — a compelling short film exploring themes of identity, love, and the complexity of human connection.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/oh%20victoria-2.jpg" alt="Oh Victoria" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/oh%20victoria-2.jpg" alt="Oh Victoria" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Oh Victoria</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="4" data-description="The official cover art for Oh, Victoria! — a visual invitation into the world of the film.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/oh-victoria-cover.jpg" alt="Oh Victoria cover" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/oh-victoria-cover.jpg" alt="Oh Victoria cover" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Oh Victoria</span>
         </div>
       </div>
@@ -2351,7 +2426,7 @@
           <a href="#" class="btn btn-primary reveal-up" data-delay="4"><span>Our Approach</span></a>
         </div>
         <div class="experience-image reveal-mask" data-delay="2" data-parallax="0.15">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/socratic/ai-socratic-nov.jpeg" alt="AI Socratic event in action">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/socratic/ai-socratic-nov.jpeg" alt="AI Socratic event in action" loading="lazy" width="800" height="600">
         </div>
       </div>
     </section>
@@ -2365,28 +2440,28 @@
 
       <div class="offerings-grid">
         <div class="offerings-card reveal-scale">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9732.jpg" alt="Curated table setting" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9732.jpg" alt="Curated table setting" loading="lazy" width="800" height="533">
           <div class="offerings-card-label">
             <h3>Curation</h3>
             <p>Thoughtfully designed settings</p>
           </div>
         </div>
         <div class="offerings-card reveal-scale" data-delay="1">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9751.jpg" alt="Connection station" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9751.jpg" alt="Connection station" loading="lazy" width="800" height="533">
           <div class="offerings-card-label">
             <h3>Connection</h3>
             <p>Meaningful human bonds</p>
           </div>
         </div>
         <div class="offerings-card reveal-scale" data-delay="2">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero.jpg" alt="Event atmosphere" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero.jpg" alt="Event atmosphere" loading="lazy" width="800" height="533">
           <div class="offerings-card-label">
             <h3>Atmosphere</h3>
             <p>Immersive environments</p>
           </div>
         </div>
         <div class="offerings-card reveal-scale" data-delay="3">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9904.jpg" alt="Celebration" loading="lazy">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9904.jpg" alt="Celebration" loading="lazy" width="800" height="533">
           <div class="offerings-card-label">
             <h3>Celebration</h3>
             <p>Moments worth remembering</p>
@@ -2418,7 +2493,7 @@
         </div>
         <div class="connect-right">
           <div class="connect-image reveal-mask" data-parallax="0.1">
-            <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9798.jpg" alt="AF Theatricals community" loading="lazy">
+            <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/salon/319A9798.jpg" alt="AF Theatricals community" loading="lazy" width="800" height="533">
           </div>
           <div class="connect-newsletter reveal-up" data-delay="3">
             <h3>Stay in the Loop</h3>
@@ -2438,13 +2513,13 @@
     <div class="footer-inner">
     <div class="footer-bg" id="footerBg">
       <div class="footer-panel footer-panel--left">
-        <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero3.jpg" alt="" loading="lazy"></div>
+        <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero3.jpg" alt="" loading="lazy" width="1920" height="1280"></div>
       </div>
       <div class="footer-panel footer-panel--center">
-        <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero2.jpg" alt="" loading="lazy"></div>
+        <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/hero2.jpg" alt="" loading="lazy" width="1920" height="1280"></div>
       </div>
       <div class="footer-panel footer-panel--right">
-        <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/disco.jpg" alt="" loading="lazy"></div>
+        <div class="hero-img-wrap"><img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/hero/disco.jpg" alt="" loading="lazy" width="1920" height="1280"></div>
       </div>
     </div>
     <!-- Top Left -->
@@ -2455,20 +2530,20 @@
     <!-- Top Right -->
     <div class="footer-top-right footer-social">
       <ul>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/aftheatricals" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/aftheatricals" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       </ul>
     </div>
 
     <!-- Center Icon -->
     <div class="footer-center">
-      <img src=".assets/Final Image Files/Color Version/Full Logo.png" alt="AF Theatricals" loading="lazy">
+      <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/logos/color-full-logo.png" alt="AF Theatricals" loading="lazy" width="200" height="80">
     </div>
 
     <!-- Bottom Left -->
     <div class="footer-bottom-left">
       <p class="footer-bar-text">New York City</p>
-      <p class="footer-bar-text">&copy; 2025 AF Theatricals</p>
+      <p class="footer-bar-text">&copy; 2026 AF Theatricals</p>
     </div>
 
     <!-- Bottom Center -->
@@ -2478,7 +2553,7 @@
 
     <!-- Bottom Right -->
     <div class="footer-bottom-right">
-      <p class="footer-bar-text"><a href="#">@aftheatricals</a></p>
+      <p class="footer-bar-text"><a href="https://www.instagram.com/aftheatricals" target="_blank" rel="noopener noreferrer">@aftheatricals</a></p>
     </div>
     </div>
   </footer>
@@ -2670,29 +2745,40 @@
     // Run immediately so navbar is correct on page load (e.g. refresh at footer)
     updateNavbar();
 
-    // ===== CUSTOM CURSOR =====
-    const cursor = document.getElementById('cursorDot');
-    let cursorX = 0, cursorY = 0, dotX = 0, dotY = 0;
+    // Hide navbar immediately if page is scrolled near bottom (prevents flash on refresh)
+    (function() {
+      var docH = document.documentElement.scrollHeight;
+      var winH = window.innerHeight;
+      if (window.scrollY + winH >= docH - 100) {
+        navbar.style.transform = 'translateY(-100%)';
+      }
+    })();
 
-    document.addEventListener('mousemove', e => {
-      cursorX = e.clientX;
-      cursorY = e.clientY;
-    });
+    // ===== CUSTOM CURSOR (only on devices with fine pointer) =====
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const cursor = document.getElementById('cursorDot');
+      let cursorX = 0, cursorY = 0, dotX = 0, dotY = 0;
 
-    function animateCursor() {
-      dotX = lerp(dotX, cursorX, 0.15);
-      dotY = lerp(dotY, cursorY, 0.15);
-      cursor.style.left = dotX - 4 + 'px';
-      cursor.style.top = dotY - 4 + 'px';
-      requestAnimationFrame(animateCursor);
+      document.addEventListener('mousemove', e => {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+      });
+
+      function animateCursor() {
+        dotX = lerp(dotX, cursorX, 0.15);
+        dotY = lerp(dotY, cursorY, 0.15);
+        cursor.style.left = dotX - 4 + 'px';
+        cursor.style.top = dotY - 4 + 'px';
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+
+      // Hover effect on interactive elements
+      document.querySelectorAll('a, button, .showcase-item, .offerings-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+      });
     }
-    animateCursor();
-
-    // Hover effect on interactive elements
-    document.querySelectorAll('a, button, .showcase-item, .offerings-card').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-    });
 
     // ===== BACK TO TOP =====
     document.querySelector('.back-to-top').addEventListener('click', function(e) {
