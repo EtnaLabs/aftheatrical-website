@@ -37,8 +37,8 @@
       --text-xl: clamp(1.309rem, 1rem + 1.5vw, 2.118rem);
       --text-2xl: clamp(2.118rem, 1.5rem + 3vw, 3.427rem);
       --text-3xl: clamp(3.427rem, 2rem + 6vw, 5.545rem);
-      --text-display: clamp(5rem, 3rem + 8vw, 9rem);
-      --text-hero: clamp(6rem, 4rem + 12vw, 16rem);
+      --text-display: clamp(5rem, 3rem + 8vw, 7rem);
+      --text-hero: clamp(6rem, 4rem + 12vw, 12rem);
     }
 
     *, *::before, *::after {
@@ -373,6 +373,7 @@
     }
 
     .hero-bg-panel.hero-bg-panel--center img {
+      object-position: center center;
       transform: translate3d(var(--hero-center-x, 0px), var(--hero-scroll-y, 0px), 0) !important;
     }
 
@@ -382,7 +383,9 @@
     }
 
     .hero-bg-panel--right img {
-      object-position: 1000px top;
+      object-position: center 50%;
+      transform: translate3d(0, var(--hero-scroll-y, 0px), 0) scale(0.95);
+      transform-origin: right center;
     }
 
     .hero::after {
@@ -697,6 +700,7 @@
       position: relative;
       overflow: hidden;
       aspect-ratio: 3/4;
+      max-height: 70vh;
     }
 
     .story-image-wrap img {
@@ -743,7 +747,7 @@
 
     .editorial-break-text {
       font-family: var(--font-display);
-      font-size: var(--text-hero);
+      font-size: var(--text-display);
       font-weight: 700;
       color: var(--cream);
       text-align: center;
@@ -860,6 +864,7 @@
       gap: var(--space-sm);
       height: 75vh;
       min-height: 450px;
+      max-height: 600px;
     }
 
     .showcase-grid-c .showcase-item:nth-child(1) {
@@ -1068,6 +1073,7 @@
       position: relative;
       overflow: hidden;
       aspect-ratio: 4/5;
+      max-width: 500px;
     }
 
     .experience-image img {
@@ -1188,12 +1194,7 @@
     }
 
     .section-philosophy::before {
-      content: '';
-      position: absolute;
-      inset: -20%;
-      background: var(--dark);
-      transform: skewY(var(--philosophy-skew, -5deg));
-      z-index: 0;
+      display: none;
     }
 
     .philosophy-bg {
@@ -1491,7 +1492,7 @@
     }
 
     .footer.swallowed .footer-center img {
-      opacity: 1;
+      opacity: 0.7;
     }
 
     .footer-inner::after {
@@ -1505,7 +1506,7 @@
     }
 
     .footer.swallowed .footer-inner::after {
-      box-shadow: inset 0 0 0 max(50vh, 50vw) var(--cream);
+      box-shadow: inset 0 0 0 0px var(--cream);
     }
 
     .footer-bottom-center {
@@ -1881,13 +1882,13 @@
     <section class="hero" id="home">
       <div class="hero-bg" id="heroBg">
         <div class="hero-bg-panel hero-bg-panel--left">
-          <div class="hero-img-wrap"><img src="assets/gallery/hero3.png" alt="AF Theatricals experience"></div>
+          <div class="hero-img-wrap"><img src="assets/hero/hero3.jpg" alt="AF Theatricals experience"></div>
         </div>
         <div class="hero-bg-panel hero-bg-panel--center">
-          <div class="hero-img-wrap"><img src="assets/gallery/hero2.jpg" alt="AF Theatricals community"></div>
+          <div class="hero-img-wrap"><img src="assets/hero/hero2.jpg" alt="AF Theatricals community"></div>
         </div>
         <div class="hero-bg-panel hero-bg-panel--right">
-          <div class="hero-img-wrap"><img src="assets/gallery/hero1.jpg" alt="AF Theatricals event"></div>
+          <div class="hero-img-wrap"><img src="assets/hero/disco.jpg" alt="AF Theatricals event"></div>
         </div>
       </div>
       <div class="hero-content">
@@ -1900,14 +1901,6 @@
         </div>
       </div>
     </section>
-
-    <!-- ===== MARQUEE DIVIDER ===== -->
-    <div class="marquee-divider">
-      <div class="marquee-track">
-        <span>Experiences</span><span>&bull;</span><span>Community</span><span>&bull;</span><span>Culture</span><span>&bull;</span><span>Connection</span><span>&bull;</span><span>Salons</span><span>&bull;</span><span>Conversations</span><span>&bull;</span><span>Theatre</span><span>&bull;</span><span>Gatherings</span><span>&bull;</span>
-        <span>Experiences</span><span>&bull;</span><span>Community</span><span>&bull;</span><span>Culture</span><span>&bull;</span><span>Connection</span><span>&bull;</span><span>Salons</span><span>&bull;</span><span>Conversations</span><span>&bull;</span><span>Theatre</span><span>&bull;</span><span>Gatherings</span><span>&bull;</span>
-      </div>
-    </div>
 
     <!-- ===== LOGO CAROUSEL ===== -->
     <div class="logo-carousel">
@@ -1938,7 +1931,7 @@
     <!-- ===== STORY SECTION ===== -->
     <section class="section-story" id="about">
       <div class="story-label reveal-up">About AF Theatricals</div>
-      <h2 class="story-heading split-text" data-split>Every Gathering <em>Is a</em> Performance</h2>
+      <h2 class="story-heading split-text" data-split>Every Gathering<br><em>Is a</em> Performance</h2>
 
       <div class="story-grid">
         <div class="story-text reveal-up" data-delay="2">
@@ -1957,7 +1950,7 @@
         <img src="assets/salon/319A9833.jpg" alt="The Women's Salon atmosphere" loading="lazy">
       </div>
       <div class="editorial-break-overlay">
-        <div class="editorial-break-text reveal-editorial">The Art <em>of</em> Gathering</div>
+        <div class="editorial-break-text reveal-editorial" style="text-align:left">The Art<br><em>of</em> Gathering</div>
       </div>
     </div>
 
@@ -1995,7 +1988,7 @@
           <span class="showcase-item-label">Production</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="6">
-          <img src="assets/gallery/nytb%20-%20event.png" alt="NYTB Event" loading="lazy">
+          <img src="assets/gallery/nytb%20-%20event.jpg" alt="NYTB Event" loading="lazy">
           <span class="showcase-item-label">NYTB Event</span>
         </div>
       </div>
@@ -2013,7 +2006,7 @@
     <section class="section-showcase section-showcase--light" id="theatrical">
       <div class="showcase-header">
         <div class="showcase-label reveal-up">02 &mdash; Theatrical Performance</div>
-        <h2 class="showcase-title split-text" data-split>Theatrical <em>Performance</em></h2>
+        <h2 class="showcase-title split-text" data-split>Theatrical<br><em>Performance</em></h2>
         <p class="showcase-description reveal-up" data-delay="2">Where storytelling meets the stage. We bring bold narratives to life through thoughtfully produced theatrical experiences.</p>
       </div>
 
@@ -2027,12 +2020,16 @@
           <span class="showcase-item-label">A Sherlock Carol</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="2">
-          <img src="assets/gallery/theater-people-2.png" alt="Theater people" loading="lazy">
+          <img src="assets/gallery/theater-people-2.jpg" alt="Theater people" loading="lazy">
           <span class="showcase-item-label">Theater People</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="3">
           <img src="assets/gallery/stage-reading.jpg" alt="Stage reading" loading="lazy">
           <span class="showcase-item-label">Stage Reading</span>
+        </div>
+        <div class="showcase-item reveal-scale" data-delay="4">
+          <img src="assets/theater/peppino-impastato.png" alt="Peppino Impastato" loading="lazy">
+          <span class="showcase-item-label">Peppino Impastato</span>
         </div>
       </div>
     </section>
@@ -2071,7 +2068,7 @@
           <span class="showcase-item-label">Oh Victoria</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="4">
-          <img src="assets/gallery/oh-victoria-cover.png" alt="Oh Victoria cover" loading="lazy">
+          <img src="assets/gallery/oh-victoria-cover.jpg" alt="Oh Victoria cover" loading="lazy">
           <span class="showcase-item-label">Oh Victoria</span>
         </div>
       </div>
@@ -2082,7 +2079,7 @@
       <div class="experience-grid">
         <div class="experience-left">
           <span class="experience-label reveal-up">What We Create</span>
-          <h2 class="experience-heading split-text" data-split>Spaces <em>That</em> Inspire</h2>
+          <h2 class="experience-heading split-text" data-split>Spaces<br><em>That</em> Inspire</h2>
           <p class="experience-text reveal-up" data-delay="3">Whether it's an intimate salon draped in velvet or a loft buzzing with ideas about artificial intelligence, every AF Theatricals event is thoughtfully produced. We curate the setting, the conversation, and the energy &mdash; so all you have to do is show up.</p>
           <a href="#" class="btn btn-primary reveal-up" data-delay="4"><span>Our Approach</span></a>
         </div>
@@ -2095,7 +2092,7 @@
     <!-- ===== OFFERINGS SECTION ===== -->
     <section class="section-offerings">
       <div class="offerings-header">
-        <h2 class="offerings-heading split-text" data-split>Every Detail <em>Matters</em></h2>
+        <h2 class="offerings-heading split-text" data-split>Every Detail<br><em>Matters</em></h2>
         <p class="offerings-intro reveal-up" data-delay="2">From curated social experiences and Socratic-style discussions to intimate creative salons, we produce events that bring people together around the things that matter.</p>
       </div>
 
@@ -2115,7 +2112,7 @@
           </div>
         </div>
         <div class="offerings-card reveal-scale" data-delay="2">
-          <img src="assets/hero.png" alt="Event atmosphere" loading="lazy">
+          <img src="assets/hero.jpg" alt="Event atmosphere" loading="lazy">
           <div class="offerings-card-label">
             <h3>Atmosphere</h3>
             <p>Immersive environments</p>
@@ -2132,7 +2129,8 @@
     </section>
 
     <!-- ===== PHILOSOPHY SECTION ===== -->
-    <section class="section-philosophy">
+    <section class="section-philosophy" style="background-color: var(--dark);">
+    <div class="philosophy-bg" style="position:absolute; inset:0; background-image:url('assets/logos/af-wallpaper.png'); background-size:350px; background-repeat:repeat; opacity:0.25; z-index:1;"></div>
       <div class="philosophy-content">
         <div class="philosophy-left">
           <div class="philosophy-quote split-text" data-split>&ldquo;Every gathering is an act of creation.&rdquo;</div>
@@ -2147,7 +2145,7 @@
       <div class="connect-grid">
         <div class="connect-left">
           <span class="connect-label reveal-up">Join Us</span>
-          <h2 class="connect-heading split-text" data-split>Be Part <em>of the</em> Story</h2>
+          <h2 class="connect-heading split-text" data-split>Be Part<br><em>of the</em> Story</h2>
           <p class="connect-text reveal-up" data-delay="3">Whether you want to attend an upcoming event, host a gathering with us, or simply be the first to know what's next &mdash; we'd love to hear from you.</p>
           <a href="#" class="btn btn-primary reveal-up" data-delay="4"><span>Get in Touch</span></a>
         </div>
@@ -2173,13 +2171,13 @@
     <div class="footer-inner">
     <div class="footer-bg" id="footerBg">
       <div class="footer-panel footer-panel--left">
-        <div class="hero-img-wrap"><img src="assets/gallery/hero3.png" alt="" loading="lazy"></div>
+        <div class="hero-img-wrap"><img src="assets/hero/hero3.jpg" alt="" loading="lazy"></div>
       </div>
       <div class="footer-panel footer-panel--center">
-        <div class="hero-img-wrap"><img src="assets/gallery/hero2.jpg" alt="" loading="lazy"></div>
+        <div class="hero-img-wrap"><img src="assets/hero/hero2.jpg" alt="" loading="lazy"></div>
       </div>
       <div class="footer-panel footer-panel--right">
-        <div class="hero-img-wrap"><img src="assets/gallery/hero1.jpg" alt="" loading="lazy"></div>
+        <div class="hero-img-wrap"><img src="assets/hero/disco.jpg" alt="" loading="lazy"></div>
       </div>
     </div>
     <!-- Top Left -->
@@ -2353,20 +2351,6 @@
 
 
 
-
-    // ===== PHILOSOPHY SKEW ANIMATION =====
-    var philoSection = document.querySelector('.section-philosophy');
-    if (philoSection) {
-      window.addEventListener('scroll', function() {
-        var rect = philoSection.getBoundingClientRect();
-        var viewH = window.innerHeight;
-        if (rect.bottom > 0 && rect.top < viewH) {
-          var progress = Math.min(1, Math.max(0, (viewH - rect.top) / (viewH + rect.height)));
-          var skew = -5 + progress * 10;
-          philoSection.style.setProperty('--philosophy-skew', skew + 'deg');
-        }
-      }, { passive: true });
-    }
 
     // ===== FOOTER PANELS SCROLL ANIMATION =====
     var footerBg = document.getElementById('footerBg');
