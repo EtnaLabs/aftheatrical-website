@@ -714,6 +714,112 @@
       transform: scale(1.04);
     }
 
+    /* ===== UPCOMING SECTION ===== */
+    .section-upcoming {
+      background: var(--cream);
+      padding: var(--space-3xl) 0 var(--space-2xl);
+      overflow: hidden;
+    }
+
+    .upcoming-header {
+      padding: 0 var(--padding-x);
+      margin-bottom: var(--space-xl);
+    }
+
+    .upcoming-label {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--dark);
+      opacity: 0.5;
+      margin-bottom: var(--space-sm);
+    }
+
+    .upcoming-heading {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      line-height: 0.95;
+      color: var(--dark);
+    }
+
+    .upcoming-heading em {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--brand);
+    }
+
+    .upcoming-card {
+      display: grid;
+      grid-template-columns: 1.618fr 1fr;
+      background: var(--dark);
+    }
+
+    .upcoming-card-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .upcoming-card-image img {
+      width: 100%;
+      display: block;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .upcoming-card-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .upcoming-card-info {
+      color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-2xl) var(--space-xl);
+    }
+
+    .upcoming-card-date {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--brand);
+      margin-bottom: var(--space-sm);
+    }
+
+    .upcoming-card-title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: var(--space-md);
+    }
+
+    .upcoming-card-desc {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      line-height: 1.8;
+      opacity: 0.8;
+      margin-bottom: var(--space-lg);
+      max-width: 42ch;
+    }
+
+    @media (max-width: 768px) {
+      .upcoming-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .upcoming-card-image {
+        aspect-ratio: 4/5;
+      }
+
+      .upcoming-card-info {
+        padding: var(--space-xl) var(--padding-x);
+      }
+    }
+
     /* ===== EDITORIAL IMAGE BREAK ===== */
     .editorial-break {
       position: relative;
@@ -919,6 +1025,152 @@
     .showcase-item:hover .showcase-item-label {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* ===== THEATER LIGHTBOX ===== */
+    .theater-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .theater-lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .theater-lightbox-close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 2.5rem;
+      cursor: pointer;
+      z-index: 2;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .theater-lightbox-close:hover {
+      opacity: 1;
+    }
+
+    .theater-lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 3rem;
+      cursor: pointer;
+      z-index: 2;
+      line-height: 1;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+      padding: var(--space-md);
+    }
+
+    .theater-lightbox-nav:hover {
+      opacity: 1;
+    }
+
+    .theater-lightbox-prev { left: var(--space-sm); }
+    .theater-lightbox-next { right: var(--space-sm); }
+
+    .theater-lightbox-content {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+      max-width: 1200px;
+      width: 90%;
+      max-height: 85vh;
+      transform: translateY(20px);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .theater-lightbox.open .theater-lightbox-content {
+      transform: translateY(0);
+    }
+
+    .theater-lightbox-img {
+      flex: 1.618;
+      min-width: 0;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .theater-lightbox-info {
+      flex: 1;
+      color: var(--cream);
+    }
+
+    .theater-lightbox-title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-sm);
+    }
+
+    .theater-lightbox-desc {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    .theater-lightbox-link {
+      display: none;
+      margin-top: var(--space-md);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .theater-lightbox-link.visible {
+      display: inline-block;
+    }
+
+    .theater-lightbox-link:hover {
+      opacity: 1;
+    }
+
+    .section-showcase .showcase-item {
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .theater-lightbox-content {
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--space-md);
+      }
+
+      .theater-lightbox-img {
+        flex: none;
+        width: 100%;
+        max-height: 55vh;
+      }
+
+      .theater-lightbox-info {
+        flex: none;
+        text-align: center;
+      }
     }
 
     /* Marquee between showcase sections */
@@ -1877,6 +2129,21 @@
     </div>
   </div>
 
+  <!-- Theater Lightbox -->
+  <div class="theater-lightbox" id="theaterLightbox">
+    <button class="theater-lightbox-close">&times;</button>
+    <button class="theater-lightbox-nav theater-lightbox-prev" aria-label="Previous image">&#8249;</button>
+    <button class="theater-lightbox-nav theater-lightbox-next" aria-label="Next image">&#8250;</button>
+    <div class="theater-lightbox-content">
+      <img class="theater-lightbox-img" src="" alt="">
+      <div class="theater-lightbox-info">
+        <h3 class="theater-lightbox-title"></h3>
+        <p class="theater-lightbox-desc"></p>
+        <a class="theater-lightbox-link" href="" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+    </div>
+  </div>
+
   <main>
     <!-- ===== HERO ===== -->
     <section class="hero" id="home">
@@ -1944,6 +2211,26 @@
       </div>
     </section>
 
+    <!-- ===== UPCOMING ===== -->
+    <section class="section-upcoming">
+      <div class="upcoming-header">
+        <div class="upcoming-label reveal-up">Upcoming</div>
+        <h2 class="upcoming-heading split-text" data-split>Next <em>on</em> Stage</h2>
+      </div>
+
+      <div class="upcoming-card">
+        <div class="upcoming-card-image reveal-mask" data-delay="1">
+          <img src="assets/theater/peppino-impastato.png" alt="Peppino Impastato" loading="lazy">
+        </div>
+        <div class="upcoming-card-info reveal-up" data-delay="2">
+          <div class="upcoming-card-date">April 17, 2026 &mdash; New York City</div>
+          <h3 class="upcoming-card-title">Peppino Impastato</h3>
+          <p class="upcoming-card-desc">A powerful theatrical exploration of courage, justice, and standing up against oppression. The story of Peppino Impastato comes to life on stage in an unforgettable one-night performance.</p>
+          <a href="https://peppinoimpastatoshow.com" target="_blank" rel="noopener noreferrer" class="btn btn-light"><span>Watch the Show</span></a>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== EDITORIAL IMAGE BREAK ===== -->
     <div class="editorial-break">
       <div class="editorial-break-img" data-parallax="0.2">
@@ -1963,31 +2250,31 @@
       </div>
 
       <div class="showcase-grid-a">
-        <div class="showcase-item reveal-scale">
+        <div class="showcase-item reveal-scale" data-description="The electricity of opening night — where months of preparation culminate in a shared moment of anticipation and celebration.">
           <img src="assets/gallery/319A8867.jpg" alt="Live event atmosphere" loading="lazy">
           <span class="showcase-item-label">Opening Night</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="1">
+        <div class="showcase-item reveal-scale" data-delay="1" data-description="An intimate gathering where guests connect over shared passions, great conversation, and the warmth of community.">
           <img src="assets/gallery/319A8872.jpg" alt="Event gathering" loading="lazy">
           <span class="showcase-item-label">The Gathering</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="2">
+        <div class="showcase-item reveal-scale" data-delay="2" data-description="At the heart of every event is community — people coming together to experience something meaningful.">
           <img src="assets/gallery/319A8829.jpg" alt="Community event" loading="lazy">
           <span class="showcase-item-label">Community</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="3">
+        <div class="showcase-item reveal-scale" data-delay="3" data-description="Live performance that captivates — bringing energy, emotion, and artistry to the stage.">
           <img src="assets/gallery/319A8937.jpg" alt="Live performance" loading="lazy">
           <span class="showcase-item-label">On Stage</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="4">
+        <div class="showcase-item reveal-scale" data-delay="4" data-description="The final bow — a moment of gratitude shared between performers and audience as the curtain falls.">
           <img src="assets/gallery/319A8953.jpg" alt="Cast on stage" loading="lazy">
           <span class="showcase-item-label">Curtain Call</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="5">
+        <div class="showcase-item reveal-scale" data-delay="5" data-description="Behind every seamless event is meticulous production — lighting, sound, and staging brought together with care.">
           <img src="assets/gallery/319A8940.jpg" alt="Stage production" loading="lazy">
           <span class="showcase-item-label">Production</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="6">
+        <div class="showcase-item reveal-scale" data-delay="6" data-description="A special evening hosted in collaboration with the New York Theater Barn, bridging communities through the performing arts.">
           <img src="assets/gallery/nytb%20-%20event.jpg" alt="NYTB Event" loading="lazy">
           <span class="showcase-item-label">NYTB Event</span>
         </div>
@@ -2011,23 +2298,23 @@
       </div>
 
       <div class="showcase-grid-b">
-        <div class="showcase-item reveal-scale">
+        <div class="showcase-item reveal-scale" data-description="Behind the scenes with the talented ensemble cast at Westport Country Playhouse, where collaboration and craft come together on stage.">
           <img src="assets/gallery/THC-L-theatre-people-westport-1.jpg.webp" alt="Theatre people at Westport" loading="lazy">
           <span class="showcase-item-label">The Cast</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="1">
+        <div class="showcase-item reveal-scale" data-delay="1" data-description="A fresh reimagining of the classic detective story, brought to life at Westport Country Playhouse with mystery, humor, and holiday spirit.">
           <img src="assets/gallery/Westport-Country-Playhouse-A-Sherlock-Carol-1.jpg.webp" alt="A Sherlock Carol at Westport Country Playhouse" loading="lazy">
           <span class="showcase-item-label">A Sherlock Carol</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="2">
+        <div class="showcase-item reveal-scale" data-delay="2" data-description="The heart of every production — the people who bring stories to life through dedication, passion, and artistry.">
           <img src="assets/gallery/theater-people-2.jpg" alt="Theater people" loading="lazy">
           <span class="showcase-item-label">Theater People</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="3">
+        <div class="showcase-item reveal-scale" data-delay="3" data-description="An intimate stage reading where new works find their voice, connecting writers, actors, and audiences in the earliest moments of creation.">
           <img src="assets/gallery/stage-reading.jpg" alt="Stage reading" loading="lazy">
           <span class="showcase-item-label">Stage Reading</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="4">
+        <div class="showcase-item reveal-scale" data-delay="4" data-description="The story of Peppino Impastato — a powerful theatrical exploration of courage, justice, and standing up against oppression." data-link="https://peppinoimpastatoshow.com">
           <img src="assets/theater/peppino-impastato.png" alt="Peppino Impastato" loading="lazy">
           <span class="showcase-item-label">Peppino Impastato</span>
         </div>
@@ -2051,23 +2338,23 @@
       </div>
 
       <div class="showcase-grid-c">
-        <div class="showcase-item reveal-scale">
+        <div class="showcase-item reveal-scale" data-description="Cinematic production captured in motion — the craft of filmmaking brought to life through light, composition, and storytelling.">
           <img src="assets/gallery/AMM08374-Enhanced-NR%20copy.jpg" alt="Film production" loading="lazy">
           <span class="showcase-item-label">Production</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="1">
+        <div class="showcase-item reveal-scale" data-delay="1" data-description="Behind the scenes on set — where the magic happens before the cameras roll and every detail is carefully considered.">
           <img src="assets/gallery/AMM00148-Enhanced-NR%20copy.jpg" alt="On set" loading="lazy">
           <span class="showcase-item-label">On Set</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="2">
+        <div class="showcase-item reveal-scale" data-delay="2" data-description="A cinematic moment frozen in time — the intersection of performance, direction, and visual artistry.">
           <img src="assets/gallery/AMM00658-Enhanced-NR%20copy.jpg" alt="Cinematic moment" loading="lazy">
           <span class="showcase-item-label">Cinematic</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="3">
+        <div class="showcase-item reveal-scale" data-delay="3" data-description="Oh, Victoria! — a compelling short film exploring themes of identity, love, and the complexity of human connection.">
           <img src="assets/gallery/oh%20victoria-2.jpg" alt="Oh Victoria" loading="lazy">
           <span class="showcase-item-label">Oh Victoria</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="4">
+        <div class="showcase-item reveal-scale" data-delay="4" data-description="The official cover art for Oh, Victoria! — a visual invitation into the world of the film.">
           <img src="assets/gallery/oh-victoria-cover.jpg" alt="Oh Victoria cover" loading="lazy">
           <span class="showcase-item-label">Oh Victoria</span>
         </div>
@@ -2540,6 +2827,85 @@
           }, 400);
         }
       });
+    });
+
+    // ===== THEATER LIGHTBOX =====
+    const theaterLightbox = document.getElementById('theaterLightbox');
+    const lightboxImg = theaterLightbox.querySelector('.theater-lightbox-img');
+    const lightboxTitle = theaterLightbox.querySelector('.theater-lightbox-title');
+    const lightboxDesc = theaterLightbox.querySelector('.theater-lightbox-desc');
+    const lightboxClose = theaterLightbox.querySelector('.theater-lightbox-close');
+    const lightboxPrev = theaterLightbox.querySelector('.theater-lightbox-prev');
+    const lightboxNext = theaterLightbox.querySelector('.theater-lightbox-next');
+
+    let lightboxItems = [];
+    let lightboxIndex = 0;
+
+    const lightboxLink = theaterLightbox.querySelector('.theater-lightbox-link');
+
+    function showLightboxItem(index) {
+      lightboxIndex = index;
+      const item = lightboxItems[index];
+      const img = item.querySelector('img');
+      const label = item.querySelector('.showcase-item-label');
+      const desc = item.getAttribute('data-description') || '';
+      const link = item.getAttribute('data-link') || '';
+
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxTitle.textContent = label ? label.textContent : '';
+      lightboxDesc.textContent = desc;
+
+      if (link) {
+        lightboxLink.href = link;
+        lightboxLink.textContent = 'Visit Website →';
+        lightboxLink.classList.add('visible');
+      } else {
+        lightboxLink.classList.remove('visible');
+        lightboxLink.href = '';
+      }
+    }
+
+    function openLightbox(item, items) {
+      lightboxItems = items;
+      lightboxIndex = items.indexOf(item);
+
+      showLightboxItem(lightboxIndex);
+      theaterLightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      theaterLightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function lightboxGo(delta) {
+      const next = (lightboxIndex + delta + lightboxItems.length) % lightboxItems.length;
+      showLightboxItem(next);
+    }
+
+    // Bind each showcase section so nav stays within that section
+    document.querySelectorAll('.section-showcase').forEach(section => {
+      const items = Array.from(section.querySelectorAll('.showcase-item'));
+      items.forEach(item => {
+        item.addEventListener('click', () => openLightbox(item, items));
+      });
+    });
+
+    lightboxPrev.addEventListener('click', () => lightboxGo(-1));
+    lightboxNext.addEventListener('click', () => lightboxGo(1));
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    theaterLightbox.addEventListener('click', (e) => {
+      if (e.target === theaterLightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!theaterLightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lightboxGo(-1);
+      if (e.key === 'ArrowRight') lightboxGo(1);
     });
 
     // ===== IMAGE HOVER TILT EFFECT =====
