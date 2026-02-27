@@ -384,6 +384,18 @@
       transform: translate3d(0, var(--hero-scroll-y, 0px), 0);
     }
 
+    /* Center panel: full-width fixed background layer */
+    .hero-bg-panel--center {
+      z-index: 1;
+      clip-path: none;
+    }
+
+    .hero-bg-panel.hero-bg-panel--center img {
+      object-position: center center;
+      transform: translate3d(var(--hero-center-x, 0px), var(--hero-scroll-y, 0px), 0) !important;
+    }
+
+    /* Left & right panels: masked overlays on top */
     .hero-bg-panel--left {
       z-index: 3;
       clip-path: inset(0 var(--hero-clip-left-r, 72.4%) 0 0);
@@ -391,16 +403,6 @@
 
     .hero-bg-panel--left img {
       object-position: -650px top;
-    }
-
-    .hero-bg-panel--center {
-      z-index: 1;
-      clip-path: inset(0 var(--hero-clip-center, 27.6%) 0 var(--hero-clip-center, 27.6%));
-    }
-
-    .hero-bg-panel.hero-bg-panel--center img {
-      object-position: center center;
-      transform: translate3d(var(--hero-center-x, 0px), var(--hero-scroll-y, 0px), 0) !important;
     }
 
     .hero-bg-panel--right {
@@ -2007,8 +2009,12 @@
       .hero {
         min-height: 100svh;
       }
-      .hero-bg-panel--center {
-        clip-path: inset(0 30% 0 30%);
+      .hero-bg-panel--left img {
+        object-position: center top;
+      }
+      .hero-bg-panel img {
+        transform: none !important;
+        height: 100%;
       }
       .hero-right {
         max-width: none;
