@@ -996,20 +996,37 @@
     /* Grid C: Film — cinematic widescreen */
     .showcase-grid-c {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 0.618fr;
+      grid-template-columns: repeat(11, 1fr);
+      grid-template-rows: repeat(4, 1fr);
       gap: var(--space-sm);
-      height: 75vh;
-      min-height: 450px;
-      max-height: 600px;
+      height: 85vh;
+      min-height: 550px;
+      max-height: 800px;
     }
 
     .showcase-grid-c .showcase-item:nth-child(1) {
-      grid-column: span 2;
+      grid-column: 1 / 9;
+      grid-row: 1 / 3;
+    }
+
+    .showcase-grid-c .showcase-item:nth-child(2) {
+      grid-column: 9 / 12;
+      grid-row: 1 / 3;
+    }
+
+    .showcase-grid-c .showcase-item:nth-child(3) {
+      grid-column: 1 / 5;
+      grid-row: 3 / 4;
     }
 
     .showcase-grid-c .showcase-item:nth-child(4) {
-      grid-column: span 2;
+      grid-column: 5 / 12;
+      grid-row: 3 / 5;
+    }
+
+    .showcase-grid-c .showcase-item:nth-child(5) {
+      grid-column: 1 / 5;
+      grid-row: 4 / 5;
     }
 
     /* Shared showcase item */
@@ -2406,17 +2423,17 @@
           <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM08374-Enhanced-NR%20copy.jpg" alt="Film production" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Production</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="1" data-description="Behind the scenes on set — where the magic happens before the cameras roll and every detail is carefully considered.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM00148-Enhanced-NR%20copy.jpg" alt="On set" loading="lazy" width="800" height="533">
-          <span class="showcase-item-label">On Set</span>
+        <div class="showcase-item reveal-scale" data-delay="1" data-description="Cinematic short exploring identity, love, and human connection through powerful visual storytelling.">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/oh%20victoria-2.jpg" alt="On Camera" loading="lazy" width="800" height="533">
+          <span class="showcase-item-label">On Camera</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="2" data-description="A cinematic moment frozen in time — the intersection of performance, direction, and visual artistry.">
           <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM00658-Enhanced-NR%20copy.jpg" alt="Cinematic moment" loading="lazy" width="800" height="533">
           <span class="showcase-item-label">Cinematic</span>
         </div>
-        <div class="showcase-item reveal-scale" data-delay="3" data-description="Oh, Victoria! — a compelling short film exploring themes of identity, love, and the complexity of human connection.">
-          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/oh%20victoria-2.jpg" alt="Oh Victoria" loading="lazy" width="800" height="533">
-          <span class="showcase-item-label">Oh Victoria</span>
+        <div class="showcase-item reveal-scale" data-delay="3" data-description="Behind the scenes on set — where the magic happens before the cameras roll and every detail is carefully considered.">
+          <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/AMM00148-Enhanced-NR%20copy.jpg" alt="On set" loading="lazy" width="800" height="533">
+          <span class="showcase-item-label">On Set</span>
         </div>
         <div class="showcase-item reveal-scale" data-delay="4" data-description="The official cover art for Oh, Victoria! — a visual invitation into the world of the film.">
           <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/gallery/oh-victoria-cover.jpg" alt="Oh Victoria cover" loading="lazy" width="800" height="533">
