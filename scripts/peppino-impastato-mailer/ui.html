@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peppino Impastato — Email Manager</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #222; }
+
+    .header { background: #1a1a2e; color: #fff; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+    .header h1 { font-size: 20px; font-weight: 600; }
+    .header .stats { font-size: 13px; opacity: 0.7; }
+
+    .toolbar { background: #fff; border-bottom: 1px solid #ddd; padding: 12px 32px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .toolbar input[type="text"] { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; width: 240px; }
+    .toolbar select { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; }
+    .toolbar button { padding: 8px 16px; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 500; }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-secondary { background: #e5e7eb; color: #374151; }
+    .btn-secondary:hover { background: #d1d5db; }
+    .btn-send { background: #059669; color: #fff; }
+    .btn-send:hover { background: #047857; }
+    .btn-send:disabled { background: #a7f3d0; color: #6ee7b7; cursor: not-allowed; }
+    .btn-preview { background: #7c3aed; color: #fff; }
+    .btn-preview:hover { background: #6d28d9; }
+    .btn-preview:disabled { background: #c4b5fd; color: #a78bfa; cursor: not-allowed; }
+    .toolbar .spacer { flex: 1; }
+    .toolbar .selected-count { font-size: 13px; color: #6b7280; }
+
+    .container { padding: 0 32px 32px; }
+
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-top: 16px; }
+    thead { background: #f9fafb; }
+    th { text-align: left; padding: 10px 14px; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e5e7eb; }
+    td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid #f3f4f6; vertical-align: middle; }
+    tr:hover { background: #f9fafb; }
+    tr.no-email { opacity: 0.4; }
+
+    .cb-cell { width: 40px; text-align: center; }
+    .cb-cell input { width: 16px; height: 16px; cursor: pointer; }
+
+    .name-link { color: #2563eb; text-decoration: none; cursor: pointer; font-weight: 500; }
+    .name-link:hover { text-decoration: underline; }
+
+    .body-preview { max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #6b7280; font-size: 12px; }
+    .body-preview.custom { color: #059669; font-style: italic; }
+
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+    .badge-pending { background: #f3f4f6; color: #6b7280; }
+    .badge-scheduled { background: #dbeafe; color: #2563eb; }
+    .badge-sent { background: #d1fae5; color: #059669; }
+
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; border-radius: 12px; width: 90%; max-width: 800px; max-height: 90vh; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .modal-header { padding: 20px 24px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h2 { font-size: 18px; }
+    .modal-close { background: none; border: none; font-size: 24px; cursor: pointer; color: #9ca3af; padding: 0 4px; }
+    .modal-close:hover { color: #374151; }
+    .modal-body { padding: 24px; overflow-y: auto; flex: 1; }
+    .modal-footer { padding: 16px 24px; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; justify-content: flex-end; }
+
+    .modal-body label { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+    .modal-body input[type="text"] { width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; margin-bottom: 16px; }
+    .modal-body .edit-hint { font-weight: 400; color: #9ca3af; font-size: 12px; }
+    .btn-reset { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .btn-reset:hover { background: #fee2e2; }
+
+    /* Toast */
+    .toast { position: fixed; top: 20px; right: 20px; padding: 12px 20px; border-radius: 8px; color: #fff; font-size: 13px; font-weight: 500; z-index: 200; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast-success { background: #059669; }
+    .toast-error { background: #dc2626; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>Peppino Impastato — Invites</h1>
+      <div class="stats" id="stats"></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="Search by name or email...">
+    <select id="filter-status">
+      <option value="all">All statuses</option>
+      <option value="not-sent" selected>Not sent</option>
+      <option value="pending">Pending</option>
+      <option value="scheduled">Scheduled</option>
+      <option value="sent">Sent</option>
+    </select>
+    <select id="filter-email">
+      <option value="all">All guests</option>
+      <option value="has-email" selected>With email</option>
+      <option value="no-email">Without email</option>
+    </select>
+    <div class="spacer"></div>
+    <span class="selected-count" id="selected-count"></span>
+    <input type="datetime-local" id="bulk-schedule" style="padding:7px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px;">
+    <button class="btn-primary" id="btn-schedule" disabled>Schedule Selected</button>
+    <button class="btn-preview" id="btn-preview" disabled>Send Preview</button>
+    <button class="btn-send" id="btn-send" disabled>Send Selected</button>
+  </div>
+
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th class="cb-cell"><input type="checkbox" id="select-all"></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Title</th>
+          <th>Subject</th>
+          <th>Body</th>
+          <th>Schedule</th>
+          <th>Status</th>
+          <th>Sent at</th>
+        </tr>
+      </thead>
+      <tbody id="guest-table"></tbody>
+    </table>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-title">Edit Email</h2>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="subject-editor">Subject</label>
+        <input type="text" id="subject-editor" placeholder="Email subject...">
+        <label>Email body <span class="edit-hint">(click on text below to edit)</span></label>
+        <iframe id="preview-iframe" style="width:100%;min-height:450px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary btn-reset" id="btn-reset-body">Reset to Default</button>
+        <button class="btn-secondary" id="btn-cancel">Cancel</button>
+        <button class="btn-primary" id="btn-save">Save</button>
+        <div style="flex:1"></div>
+        <input type="datetime-local" id="modal-schedule" style="padding:7px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px;">
+        <button class="btn-primary" id="btn-modal-schedule">Schedule</button>
+        <button class="btn-preview" id="btn-modal-preview">Send Preview</button>
+        <button class="btn-send" id="btn-modal-send">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let guests = [];
+    let selected = new Set();
+    let editingId = null;
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast toast-${type} show`;
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    async function fetchGuests() {
+      const res = await fetch("/api/guests");
+      guests = await res.json();
+      render();
+    }
+
+    function getFirstName(name) {
+      return name.split(" ")[0].replace(/[,"]/g, "");
+    }
+
+    function getFilteredGuests() {
+      const search = document.getElementById("search").value.toLowerCase();
+      const statusFilter = document.getElementById("filter-status").value;
+      const emailFilter = document.getElementById("filter-email").value;
+
+      return guests.filter((g) => {
+        if (search && !g.name.toLowerCase().includes(search) && !g.email.toLowerCase().includes(search)) return false;
+        if (statusFilter === "not-sent" && g.status === "sent") return false;
+        if (statusFilter !== "all" && statusFilter !== "not-sent" && g.status !== statusFilter) return false;
+        if (emailFilter === "has-email" && !g.email) return false;
+        if (emailFilter === "no-email" && g.email) return false;
+        return true;
+      });
+    }
+
+    function render() {
+      const filtered = getFilteredGuests();
+      const tbody = document.getElementById("guest-table");
+
+      const total = guests.length;
+      const withEmail = guests.filter((g) => g.email).length;
+      const sent = guests.filter((g) => g.status === "sent").length;
+      const pending = guests.filter((g) => g.status !== "sent" && g.email).length;
+      document.getElementById("stats").textContent = `${total} guests \u00b7 ${withEmail} with email \u00b7 ${sent} sent \u00b7 ${pending} pending`;
+
+      tbody.innerHTML = filtered
+        .map((g) => {
+          const hasCustomBody = !!g.body;
+          const hasCustomSubject = !!g.subject;
+          const bodyPreview = hasCustomBody ? "Custom body" : `Default (Gentile ${getFirstName(g.name)})`;
+          const subjectPreview = hasCustomSubject ? g.subject : "Default";
+          const checked = selected.has(g.id) ? "checked" : "";
+          const noEmail = !g.email ? "no-email" : "";
+
+          return `<tr class="${noEmail}">
+            <td class="cb-cell"><input type="checkbox" data-id="${g.id}" ${checked} ${!g.email ? "disabled" : ""}></td>
+            <td><a class="name-link" data-id="${g.id}">${g.name}</a></td>
+            <td>${g.email || "<span style='color:#d1d5db'>No email</span>"}</td>
+            <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${g.title || ""}</td>
+            <td><span class="body-preview ${hasCustomSubject ? "custom" : ""}" style="max-width:180px">${subjectPreview}</span></td>
+            <td><span class="body-preview ${hasCustomBody ? "custom" : ""}">${bodyPreview}</span></td>
+            <td style="font-size:12px;color:#6b7280;white-space:nowrap">${g.schedule ? new Date(g.schedule).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "\u2014"}</td>
+            <td><span class="badge badge-${g.status}">${g.status}</span></td>
+            <td style="font-size:12px;color:#6b7280;white-space:nowrap">${g.sent_at ? new Date(g.sent_at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "\u2014"}</td>
+          </tr>`;
+        })
+        .join("");
+
+      updateSelectedCount();
+    }
+
+    function updateSelectedCount() {
+      const count = selected.size;
+      document.getElementById("selected-count").textContent = count ? `${count} selected` : "";
+      document.getElementById("btn-send").disabled = count === 0;
+      document.getElementById("btn-preview").disabled = count === 0;
+      document.getElementById("btn-schedule").disabled = count === 0;
+    }
+
+    // Checkboxes
+    document.getElementById("guest-table").addEventListener("change", (e) => {
+      if (e.target.type === "checkbox") {
+        const id = Number(e.target.dataset.id);
+        if (e.target.checked) selected.add(id);
+        else selected.delete(id);
+        updateSelectedCount();
+      }
+    });
+
+    // Select all
+    document.getElementById("select-all").addEventListener("change", (e) => {
+      const filtered = getFilteredGuests().filter((g) => g.email);
+      if (e.target.checked) filtered.forEach((g) => selected.add(g.id));
+      else filtered.forEach((g) => selected.delete(g.id));
+      render();
+    });
+
+    // Name click -> open modal
+    document.getElementById("guest-table").addEventListener("click", (e) => {
+      if (e.target.classList.contains("name-link")) {
+        const id = Number(e.target.dataset.id);
+        openModal(id);
+      }
+    });
+
+    // Filters
+    document.getElementById("search").addEventListener("input", render);
+    document.getElementById("filter-status").addEventListener("change", render);
+    document.getElementById("filter-email").addEventListener("change", render);
+
+    // Schedule Selected
+    document.getElementById("btn-schedule").addEventListener("click", async () => {
+      const schedule = document.getElementById("bulk-schedule").value;
+      if (!schedule) { showToast("Pick a date/time first", "error"); return; }
+      const ids = [...selected];
+      await fetch("/api/guests/schedule", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids, schedule }),
+      });
+      selected.clear();
+      document.getElementById("select-all").checked = false;
+      await fetchGuests();
+      showToast(`Scheduled ${ids.length} guest(s)`);
+    });
+
+    // Send Selected
+    document.getElementById("btn-send").addEventListener("click", async () => {
+      const ids = [...selected];
+      const names = ids.map((id) => guests[id]?.name).filter(Boolean);
+      if (!confirm(`Send email to ${ids.length} guest(s)?\n\n${names.join(", ")}`)) return;
+
+      const btn = document.getElementById("btn-send");
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      try {
+        const res = await fetch("/api/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ids }),
+        });
+        const data = await res.json();
+        const ok = data.results.filter((r) => r.success).length;
+        const fail = data.results.filter((r) => !r.success).length;
+        if (fail > 0) {
+          const errors = data.results.filter((r) => !r.success).map((r) => `${r.email}: ${r.error}`).join("\n");
+          showToast(`Sent ${ok}, failed ${fail}`, "error");
+          console.error("Send failures:", errors);
+        } else {
+          showToast(`Sent ${ok} email(s) successfully`);
+        }
+        selected.clear();
+        document.getElementById("select-all").checked = false;
+        await fetchGuests();
+      } catch (err) {
+        showToast("Send failed: " + err.message, "error");
+      }
+
+      btn.textContent = "Send Selected";
+    });
+
+    // Send Preview
+    document.getElementById("btn-preview").addEventListener("click", async () => {
+      const firstId = [...selected][0];
+      const guest = guests[firstId];
+      if (!confirm(`Send preview email (as "${guest.name}") to fed@aisocratic.org and anissafelix@gmail.com?`)) return;
+
+      const btn = document.getElementById("btn-preview");
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      try {
+        const res = await fetch("/api/preview", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ guestId: firstId }),
+        });
+        const data = await res.json();
+        const ok = data.results.filter((r) => r.success).length;
+        if (ok > 0) {
+          showToast(`Preview sent to ${ok} test address(es)`);
+        } else {
+          showToast("Preview failed", "error");
+        }
+      } catch (err) {
+        showToast("Preview failed: " + err.message, "error");
+      }
+
+      btn.textContent = "Send Preview";
+      updateSelectedCount();
+    });
+
+    // Modal
+    async function openModal(id) {
+      editingId = id;
+      const res = await fetch(`/api/guests/${id}`);
+      const guest = await res.json();
+
+      document.getElementById("modal-title").textContent = `Edit: ${guest.name}`;
+      document.getElementById("subject-editor").value = guest.subject || guest.defaultSubject;
+
+      const iframe = document.getElementById("preview-iframe");
+      iframe.srcdoc = guest.body || guest.renderedBody;
+      iframe.onload = () => {
+        iframe.contentDocument.designMode = "on";
+      };
+
+      document.getElementById("modal").classList.add("open");
+    }
+
+    function closeModal() {
+      document.getElementById("modal").classList.remove("open");
+      editingId = null;
+    }
+
+    document.getElementById("modal-close").addEventListener("click", closeModal);
+    document.getElementById("btn-cancel").addEventListener("click", closeModal);
+
+    document.getElementById("btn-save").addEventListener("click", async () => {
+      const subject = document.getElementById("subject-editor").value;
+      const iframe = document.getElementById("preview-iframe");
+      const doc = iframe.contentDocument;
+      const body = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
+
+      await fetch(`/api/guests/${editingId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subject, body }),
+      });
+      closeModal();
+      await fetchGuests();
+      showToast("Email saved");
+    });
+
+    document.getElementById("btn-reset-body").addEventListener("click", async () => {
+      if (!confirm("Reset subject and body to default template?")) return;
+      await fetch(`/api/guests/${editingId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subject: "", body: "" }),
+      });
+      await fetchGuests();
+      openModal(editingId);
+      showToast("Reset to default");
+    });
+
+    // Send preview from modal
+    document.getElementById("btn-modal-preview").addEventListener("click", async () => {
+      if (editingId == null) return;
+      const guest = guests[editingId];
+      if (!confirm(`Send preview email (as "${guest.name}") to fed@aisocratic.org and anissafelix@gmail.com?`)) return;
+
+      const btn = document.getElementById("btn-modal-preview");
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      try {
+        const res = await fetch("/api/preview", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ guestId: editingId }),
+        });
+        const data = await res.json();
+        const ok = data.results.filter((r) => r.success).length;
+        if (ok > 0) {
+          showToast(`Preview sent to ${ok} test address(es)`);
+        } else {
+          showToast("Preview failed", "error");
+        }
+      } catch (err) {
+        showToast("Preview failed: " + err.message, "error");
+      }
+
+      btn.textContent = "Send Preview";
+      btn.disabled = false;
+    });
+
+    // Schedule from modal
+    document.getElementById("btn-modal-schedule").addEventListener("click", async () => {
+      if (editingId == null) return;
+      const schedule = document.getElementById("modal-schedule").value;
+      if (!schedule) { showToast("Pick a date/time first", "error"); return; }
+      await fetch(`/api/guests/${editingId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ schedule, status: "scheduled" }),
+      });
+      await fetchGuests();
+      showToast("Scheduled");
+    });
+
+    // Send from modal
+    document.getElementById("btn-modal-send").addEventListener("click", async () => {
+      if (editingId == null) return;
+      const guest = guests[editingId];
+      if (!confirm(`Send email to ${guest.name} (${guest.email})?`)) return;
+
+      const btn = document.getElementById("btn-modal-send");
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      try {
+        const res = await fetch("/api/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ids: [editingId] }),
+        });
+        const data = await res.json();
+        const ok = data.results.filter((r) => r.success).length;
+        if (ok > 0) {
+          showToast(`Email sent to ${guest.email}`);
+        } else {
+          const err = data.results[0]?.error || "Unknown error";
+          showToast(`Send failed: ${err}`, "error");
+        }
+        await fetchGuests();
+      } catch (err) {
+        showToast("Send failed: " + err.message, "error");
+      }
+
+      btn.textContent = "Send";
+      btn.disabled = false;
+    });
+
+    // Close modal on overlay click
+    document.getElementById("modal").addEventListener("click", (e) => {
+      if (e.target === document.getElementById("modal")) closeModal();
+    });
+
+    // Init
+    fetchGuests();
+  </script>
+</body>
+</html>
