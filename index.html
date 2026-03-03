@@ -193,7 +193,7 @@
     }
 
     .navbar.scrolled {
-      background: rgba(59, 74, 43, 0.95);
+      background: var(--dark);
       backdrop-filter: blur(20px);
     }
 
@@ -244,14 +244,14 @@
     }
 
     .navbar-menu-btn.active span:first-child {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: translateY(8px) rotate(45deg);
     }
     .navbar-menu-btn.active span:nth-child(2) {
       opacity: 0;
       transform: scaleX(0);
     }
     .navbar-menu-btn.active span:last-child {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: translateY(-8px) rotate(-45deg);
     }
 
     /* ===== FULLSCREEN MENU ===== */
@@ -350,7 +350,7 @@
       height: 100vh;
       min-height: 700px;
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       overflow: hidden;
       background: var(--dark);
     }
@@ -379,7 +379,7 @@
       height: calc(100% + 160px);
       object-fit: cover;
       object-position: center top;
-      opacity: 0.65;
+      opacity: 0.5;
       will-change: transform;
       transform: translate3d(0, var(--hero-scroll-y, 0px), 0);
     }
@@ -412,8 +412,7 @@
 
     .hero-bg-panel--right img {
       object-position: center 50%;
-      transform: translate3d(0, var(--hero-scroll-y, 0px), 0) scale(0.95);
-      transform-origin: right center;
+      transform: translate3d(0, var(--hero-scroll-y, 0px), 0);
     }
 
     .hero::after {
@@ -430,10 +429,9 @@
       z-index: 3;
       width: 100%;
       padding: 0 var(--padding-x);
-      padding-bottom: var(--space-2xl);
       display: grid;
       grid-template-columns: 1.618fr 1fr;
-      align-items: end;
+      align-items: start;
       gap: var(--space-xl);
     }
 
@@ -445,10 +443,13 @@
     .hero-right {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: flex-end;
+      text-align: right;
       gap: var(--space-md);
-      padding-bottom: var(--space-sm);
-      max-width: 380px;
+      padding-top: 15vh;
+      max-width: 480px;
+      grid-column: 2;
+      grid-row: 1;
       justify-self: end;
     }
 
@@ -791,6 +792,8 @@
 
     .upcoming-card-image img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -2243,8 +2246,8 @@
         <div class="hero-title-wrap">
         </div>
         <div class="hero-right">
-          <h1 class="hero-accent" id="heroAccent">Where Community Takes Center Stage</h1>
-          <p class="hero-description" id="heroDesc">We produce immersive experiences that bring people together &mdash; from intimate salons to thought-provoking conversations on AI and culture. Every gathering is a production.</p>
+          <h1 class="hero-accent" id="heroAccent">Where Community<br>Takes Center Stage</h1>
+          <p class="hero-description" id="heroDesc">We produce immersive experiences that bring people together.<br>From intimate salons to theater performances.<br>Every gathering is a production.</p>
           <span class="hero-scroll" id="heroScroll"><span class="hero-scroll-line"></span> Scroll</span>
         </div>
       </div>
