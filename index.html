@@ -4,13 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CK9F98M5DE"></script>
+  <!-- Google tag (gtag.js) — deferred off the critical path; events queue in dataLayer meanwhile -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-CK9F98M5DE');
+    (function () {
+      var loaded = false;
+      function loadGtag() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-CK9F98M5DE';
+        document.head.appendChild(s);
+      }
+      window.addEventListener('load', function () { setTimeout(loadGtag, 1500); });
+      setTimeout(loadGtag, 4000);
+    })();
   </script>
 
   <title>AF Theatricals – Where Community Takes Center Stage</title>
@@ -45,8 +57,8 @@
 
   <!-- Preload LCP hero image -->
   <link rel="preload" as="image" type="image/avif"
-        imagesrcset="/assets/optimized/hero/hero2-640w.avif 640w, /assets/optimized/hero/hero2-1280w.avif 1280w, /assets/optimized/hero/hero2-1920w.avif 1920w"
-        imagesizes="(max-width: 768px) 100vw, 34vw">
+        imagesrcset="/assets/optimized/hero/hero2-640w.avif 640w, /assets/optimized/hero/hero2-960w.avif 960w, /assets/optimized/hero/hero2-1280w.avif 1280w, /assets/optimized/hero/hero2-1920w.avif 1920w"
+        imagesizes="(max-width: 768px) 65vw, 34vw">
 
   <style>
     /* ===== GOLDEN RATIO SPACING SYSTEM ===== */
@@ -2269,23 +2281,23 @@
       <div class="hero-bg" id="heroBg">
         <div class="hero-bg-panel hero-bg-panel--left">
           <div class="hero-img-wrap"><picture>
-            <source type="image/avif" srcset="/assets/optimized/hero/hero3-640w.avif 640w, /assets/optimized/hero/hero3-1280w.avif 1280w, /assets/optimized/hero/hero3-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, 34vw">
-            <source type="image/webp" srcset="/assets/optimized/hero/hero3-640w.webp 640w, /assets/optimized/hero/hero3-1280w.webp 1280w, /assets/optimized/hero/hero3-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, 34vw">
-            <img src="/assets/optimized/hero/hero3-1280w.jpg" srcset="/assets/optimized/hero/hero3-640w.jpg 640w, /assets/optimized/hero/hero3-1280w.jpg 1280w, /assets/optimized/hero/hero3-1920w.jpg 1920w" sizes="(max-width: 768px) 100vw, 34vw" alt="AF Theatricals experience" loading="lazy" width="1920" height="1280">
+            <source type="image/avif" srcset="/assets/optimized/hero/hero3-640w.avif 640w, /assets/optimized/hero/hero3-960w.avif 960w, /assets/optimized/hero/hero3-1280w.avif 1280w, /assets/optimized/hero/hero3-1920w.avif 1920w" sizes="(max-width: 768px) 35vw, 34vw">
+            <source type="image/webp" srcset="/assets/optimized/hero/hero3-640w.webp 640w, /assets/optimized/hero/hero3-960w.webp 960w, /assets/optimized/hero/hero3-1280w.webp 1280w, /assets/optimized/hero/hero3-1920w.webp 1920w" sizes="(max-width: 768px) 35vw, 34vw">
+            <img src="/assets/optimized/hero/hero3-1280w.jpg" srcset="/assets/optimized/hero/hero3-640w.jpg 640w, /assets/optimized/hero/hero3-960w.jpg 960w, /assets/optimized/hero/hero3-1280w.jpg 1280w, /assets/optimized/hero/hero3-1920w.jpg 1920w" sizes="(max-width: 768px) 35vw, 34vw" alt="AF Theatricals experience" loading="lazy" width="1920" height="1280">
           </picture></div>
         </div>
         <div class="hero-bg-panel hero-bg-panel--center">
           <div class="hero-img-wrap"><picture>
-            <source type="image/avif" srcset="/assets/optimized/hero/hero2-640w.avif 640w, /assets/optimized/hero/hero2-1280w.avif 1280w, /assets/optimized/hero/hero2-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, 34vw">
-            <source type="image/webp" srcset="/assets/optimized/hero/hero2-640w.webp 640w, /assets/optimized/hero/hero2-1280w.webp 1280w, /assets/optimized/hero/hero2-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, 34vw">
-            <img src="/assets/optimized/hero/hero2-1280w.jpg" srcset="/assets/optimized/hero/hero2-640w.jpg 640w, /assets/optimized/hero/hero2-1280w.jpg 1280w, /assets/optimized/hero/hero2-1920w.jpg 1920w" sizes="(max-width: 768px) 100vw, 34vw" alt="AF Theatricals community" fetchpriority="high" width="1920" height="1280">
+            <source type="image/avif" srcset="/assets/optimized/hero/hero2-640w.avif 640w, /assets/optimized/hero/hero2-960w.avif 960w, /assets/optimized/hero/hero2-1280w.avif 1280w, /assets/optimized/hero/hero2-1920w.avif 1920w" sizes="(max-width: 768px) 65vw, 34vw">
+            <source type="image/webp" srcset="/assets/optimized/hero/hero2-640w.webp 640w, /assets/optimized/hero/hero2-960w.webp 960w, /assets/optimized/hero/hero2-1280w.webp 1280w, /assets/optimized/hero/hero2-1920w.webp 1920w" sizes="(max-width: 768px) 65vw, 34vw">
+            <img src="/assets/optimized/hero/hero2-1280w.jpg" srcset="/assets/optimized/hero/hero2-640w.jpg 640w, /assets/optimized/hero/hero2-960w.jpg 960w, /assets/optimized/hero/hero2-1280w.jpg 1280w, /assets/optimized/hero/hero2-1920w.jpg 1920w" sizes="(max-width: 768px) 65vw, 34vw" alt="AF Theatricals community" fetchpriority="high" width="1920" height="1280">
           </picture></div>
         </div>
         <div class="hero-bg-panel hero-bg-panel--right">
           <div class="hero-img-wrap"><picture>
-            <source type="image/avif" srcset="/assets/optimized/hero/disco-640w.avif 640w, /assets/optimized/hero/disco-1280w.avif 1280w, /assets/optimized/hero/disco-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, 34vw">
-            <source type="image/webp" srcset="/assets/optimized/hero/disco-640w.webp 640w, /assets/optimized/hero/disco-1280w.webp 1280w, /assets/optimized/hero/disco-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, 34vw">
-            <img src="/assets/optimized/hero/disco-1280w.jpg" srcset="/assets/optimized/hero/disco-640w.jpg 640w, /assets/optimized/hero/disco-1280w.jpg 1280w, /assets/optimized/hero/disco-1920w.jpg 1920w" sizes="(max-width: 768px) 100vw, 34vw" alt="AF Theatricals event" loading="lazy" width="1920" height="1280">
+            <source type="image/avif" srcset="/assets/optimized/hero/disco-640w.avif 640w, /assets/optimized/hero/disco-960w.avif 960w, /assets/optimized/hero/disco-1280w.avif 1280w, /assets/optimized/hero/disco-1920w.avif 1920w" sizes="(max-width: 768px) 35vw, 34vw">
+            <source type="image/webp" srcset="/assets/optimized/hero/disco-640w.webp 640w, /assets/optimized/hero/disco-960w.webp 960w, /assets/optimized/hero/disco-1280w.webp 1280w, /assets/optimized/hero/disco-1920w.webp 1920w" sizes="(max-width: 768px) 35vw, 34vw">
+            <img src="/assets/optimized/hero/disco-1280w.jpg" srcset="/assets/optimized/hero/disco-640w.jpg 640w, /assets/optimized/hero/disco-960w.jpg 960w, /assets/optimized/hero/disco-1280w.jpg 1280w, /assets/optimized/hero/disco-1920w.jpg 1920w" sizes="(max-width: 768px) 35vw, 34vw" alt="AF Theatricals event" loading="lazy" width="1920" height="1280">
           </picture></div>
         </div>
       </div>
@@ -2304,25 +2316,25 @@
     <div class="logo-carousel">
       <div class="logo-carousel-label">Trusted by</div>
       <div class="logo-carousel-track">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/greycroft.png" alt="Greycroft" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/hadron.png" alt="Hadron" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/italian american museum.png" alt="Italian American Museum" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/nyb.webp" alt="NYB" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/sei-labs-foundation.png" alt="Sei Labs Foundation" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/solana.png" alt="Solana" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/westport country playhouse.png" alt="Westport Country Playhouse" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/LRF-consulting.png" alt="LRF Consulting" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/aisocratic.png" alt="AISocratic" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/greycroft.webp" alt="Greycroft" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/hadron.webp" alt="Hadron" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/italian%20american%20museum.webp" alt="Italian American Museum" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/nyb.webp" alt="NYB" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/sei-labs-foundation.webp" alt="Sei Labs Foundation" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/solana.webp" alt="Solana" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/westport%20country%20playhouse.webp" alt="Westport Country Playhouse" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/LRF-consulting.webp" alt="LRF Consulting" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/aisocratic.webp" alt="AISocratic" loading="lazy" width="200" height="80">
         <!-- duplicate set for seamless loop -->
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/greycroft.png" alt="Greycroft" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/hadron.png" alt="Hadron" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/italian american museum.png" alt="Italian American Museum" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/nyb.webp" alt="NYB" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/sei-labs-foundation.png" alt="Sei Labs Foundation" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/solana.png" alt="Solana" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/westport country playhouse.png" alt="Westport Country Playhouse" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/LRF-consulting.png" alt="LRF Consulting" loading="lazy" width="200" height="80">
-        <img src="https://pub-43545990593741a6b5e64edec34eabee.r2.dev/assets/companies/aisocratic.png" alt="AISocratic" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/greycroft.webp" alt="Greycroft" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/hadron.webp" alt="Hadron" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/italian%20american%20museum.webp" alt="Italian American Museum" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/nyb.webp" alt="NYB" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/sei-labs-foundation.webp" alt="Sei Labs Foundation" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/solana.webp" alt="Solana" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/westport%20country%20playhouse.webp" alt="Westport Country Playhouse" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/LRF-consulting.webp" alt="LRF Consulting" loading="lazy" width="200" height="80">
+        <img src="/assets/optimized/companies/aisocratic.webp" alt="AISocratic" loading="lazy" width="200" height="80">
       </div>
     </div>
 
@@ -2573,13 +2585,13 @@
     <div class="footer-inner">
     <div class="footer-bg" id="footerBg">
       <div class="footer-panel footer-panel--left">
-        <div class="hero-img-wrap"><img src="/assets/optimized/hero/hero3-1280w.webp" alt="" loading="lazy" width="1920" height="1280"></div>
+        <div class="hero-img-wrap"><img src="/assets/optimized/hero/hero3-640w.webp" alt="" loading="lazy" width="1920" height="1280"></div>
       </div>
       <div class="footer-panel footer-panel--center">
-        <div class="hero-img-wrap"><img src="/assets/optimized/hero/hero2-1280w.webp" alt="" loading="lazy" width="1920" height="1280"></div>
+        <div class="hero-img-wrap"><img src="/assets/optimized/hero/hero2-640w.webp" alt="" loading="lazy" width="1920" height="1280"></div>
       </div>
       <div class="footer-panel footer-panel--right">
-        <div class="hero-img-wrap"><img src="/assets/optimized/hero/disco-1280w.webp" alt="" loading="lazy" width="1920" height="1280"></div>
+        <div class="hero-img-wrap"><img src="/assets/optimized/hero/disco-640w.webp" alt="" loading="lazy" width="1920" height="1280"></div>
       </div>
     </div>
     <!-- Top Left -->
