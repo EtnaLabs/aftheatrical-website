@@ -57,5 +57,65 @@
       "canonical": true
     },
     "notes": "No analytics existed before this date. Guest-data CSV leak removed from public repo same day."
+  },
+  {
+    "date": "2026-06-12",
+    "label": "post-optimization (GA4 + favicon + 404 + AVIF/WebP hero images deployed)",
+    "url": "https://aftheatricals.com",
+    "tool": "lighthouse 13.4.0",
+    "mobile": {
+      "scores": {
+        "performance": 75,
+        "seo": 100,
+        "accessibility": 96,
+        "bestPractices": 100
+      },
+      "coreWebVitals": {
+        "firstContentfulPaint": "1.0 s",
+        "largestContentfulPaint": "8.4 s",
+        "totalBlockingTime": "20 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "2.7 s"
+      },
+      "pageWeight": {
+        "totalKB": 2169,
+        "requests": 22
+      }
+    },
+    "desktop": {
+      "scores": {
+        "performance": 100,
+        "seo": 100,
+        "accessibility": 96,
+        "bestPractices": 100
+      },
+      "coreWebVitals": {
+        "firstContentfulPaint": "0.3 s",
+        "largestContentfulPaint": "0.4 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.4 s"
+      },
+      "pageWeight": {
+        "totalKB": 1794,
+        "requests": 22
+      }
+    },
+    "seoChecklist": {
+      "analyticsInstalled": true,
+      "ga4MeasurementId": "G-CK9F98M5DE",
+      "searchConsoleVerified": true,
+      "favicon": true,
+      "custom404": true,
+      "sitemapUrls": 1,
+      "sitemapSubmittedToGSC": true,
+      "structuredData": [
+        "Organization",
+        "TheaterEvent"
+      ],
+      "metaDescription": true,
+      "openGraph": true,
+      "canonical": true
+    }
   }
 ]
