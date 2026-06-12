@@ -48,13 +48,17 @@ function loadGuests() {
   const records = parse(csv, { columns: true, skip_empty_lines: true });
 
   const guests = records.map((r, i) => {
-    const email = r.personal_email || r.work_email || "";
+    const personalEmail = (r.personal_email || "").trim();
+    const workEmail = (r.work_email || "").trim();
+    const email = personalEmail || workEmail || "";
     return {
       id: i,
       name: r.name,
-      email: email.trim(),
+      email,
+      emailType: personalEmail ? "personal" : workEmail ? "work" : "",
       title: r.title,
       company: r.company_pdl,
+      source: r.source || "linkedin", // linkedin | anissa
       subject: "", // empty = use default subject
       body: "", // empty = use default template
       schedule: "", // empty = not scheduled
@@ -69,6 +73,30 @@ function loadGuests() {
 
 function saveGuests(guests) {
   fs.writeFileSync(DATA_PATH, JSON.stringify(guests, null, 2));
+  syncStatusToCSV(guests);
+}
+
+function syncStatusToCSV(guests) {
+  const csv = fs.readFileSync(CSV_PATH, "utf-8");
+  const records = parse(csv, { columns: true, skip_empty_lines: true });
+  const header = Object.keys(records[0] || {});
+
+  // Update status column in CSV rows to match guest data
+  for (let i = 0; i < records.length && i < guests.length; i++) {
+    records[i].status = guests[i].status || "";
+  }
+
+  // Write CSV back
+  const lines = [header.join(",")];
+  for (const row of records) {
+    lines.push(header.map((col) => {
+      const val = row[col] || "";
+      return val.includes(",") || val.includes('"') || val.includes("\n")
+        ? '"' + val.replace(/"/g, '""') + '"'
+        : val;
+    }).join(","));
+  }
+  fs.writeFileSync(CSV_PATH, lines.join("\n") + "\n");
 }
 
 function getDefaultTemplate() {
@@ -78,7 +106,8 @@ function getDefaultTemplate() {
 function renderBody(guest) {
   const template = getDefaultTemplate();
   if (guest.body) return guest.body;
-  const firstName = guest.name.split(" ")[0].replace(/[,"]/g, "");
+  const firstName = guest.name ? guest.name.split(" ")[0].replace(/[,"]/g, "") : "";
+  if (!firstName) return template.replace("Gentile [name],", "Gentili Ospiti,");
   return template.replace("[name]", firstName);
 }
 

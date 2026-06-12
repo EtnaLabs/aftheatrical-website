@@ -51,6 +51,15 @@
     .badge-pending { background: #f3f4f6; color: #6b7280; }
     .badge-scheduled { background: #dbeafe; color: #2563eb; }
     .badge-sent { background: #d1fae5; color: #059669; }
+    .badge-linkedin { background: #dbeafe; color: #1e40af; }
+    .badge-anissa { background: #fef3c7; color: #92400e; }
+
+    .pagination { display: flex; align-items: center; gap: 12px; justify-content: space-between; padding: 12px 0; font-size: 13px; color: #6b7280; }
+    .pagination button { padding: 6px 12px; border: 1px solid #d1d5db; background: #fff; border-radius: 6px; font-size: 13px; cursor: pointer; }
+    .pagination button:hover:not(:disabled) { background: #f3f4f6; }
+    .pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .pagination select { padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; }
+    .pagination .page-info { font-weight: 500; }
 
     /* Modal */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center; }
@@ -74,6 +83,17 @@
     .toast.show { opacity: 1; transform: translateY(0); }
     .toast-success { background: #059669; }
     .toast-error { background: #dc2626; }
+
+    .progress-bars { display: flex; gap: 24px; padding: 14px 32px; background: #fff; border-bottom: 1px solid #e5e7eb; }
+    .progress-item { flex: 1; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-bottom: 5px; }
+    .progress-label .source-name { text-transform: uppercase; letter-spacing: 0.5px; }
+    .progress-label.linkedin .source-name { color: #1e40af; }
+    .progress-label.anissa .source-name { color: #92400e; }
+    .progress-track { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+    .progress-fill.linkedin { background: #2563eb; }
+    .progress-fill.anissa { background: #d97706; }
   </style>
 </head>
 <body>
@@ -81,6 +101,23 @@
     <div>
       <h1>Peppino Impastato — Invites</h1>
       <div class="stats" id="stats"></div>
+    </div>
+  </div>
+
+  <div class="progress-bars">
+    <div class="progress-item">
+      <div class="progress-label linkedin">
+        <span class="source-name">LinkedIn</span>
+        <span id="progress-linkedin-text"></span>
+      </div>
+      <div class="progress-track"><div class="progress-fill linkedin" id="progress-linkedin-bar" style="width:0%"></div></div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-label anissa">
+        <span class="source-name">Anissa</span>
+        <span id="progress-anissa-text"></span>
+      </div>
+      <div class="progress-track"><div class="progress-fill anissa" id="progress-anissa-bar" style="width:0%"></div></div>
     </div>
   </div>
 
@@ -98,6 +135,11 @@
       <option value="has-email" selected>With email</option>
       <option value="no-email">Without email</option>
     </select>
+    <select id="filter-source">
+      <option value="all">All sources</option>
+      <option value="linkedin">LinkedIn leads</option>
+      <option value="anissa">Anissa's contacts</option>
+    </select>
     <div class="spacer"></div>
     <span class="selected-count" id="selected-count"></span>
     <input type="datetime-local" id="bulk-schedule" style="padding:7px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px;">
@@ -113,6 +155,7 @@
           <th class="cb-cell"><input type="checkbox" id="select-all"></th>
           <th>Name</th>
           <th>Email</th>
+          <th>Source</th>
           <th>Title</th>
           <th>Subject</th>
           <th>Body</th>
@@ -123,6 +166,23 @@
       </thead>
       <tbody id="guest-table"></tbody>
     </table>
+    <div class="pagination">
+      <div>
+        <span>Show</span>
+        <select id="page-size">
+          <option value="25">25</option>
+          <option value="50" selected>50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+        </select>
+        <span>per page</span>
+      </div>
+      <div class="page-info" id="page-info"></div>
+      <div>
+        <button id="page-prev" disabled>&laquo; Prev</button>
+        <button id="page-next">Next &raquo;</button>
+      </div>
+    </div>
   </div>
 
   <!-- Edit Modal -->
@@ -158,6 +218,7 @@
     let guests = [];
     let selected = new Set();
     let editingId = null;
+    let currentPage = 0;
 
     function showToast(message, type = 'success') {
       const toast = document.getElementById('toast');
@@ -180,6 +241,7 @@
       const search = document.getElementById("search").value.toLowerCase();
       const statusFilter = document.getElementById("filter-status").value;
       const emailFilter = document.getElementById("filter-email").value;
+      const sourceFilter = document.getElementById("filter-source").value;
 
       return guests.filter((g) => {
         if (search && !g.name.toLowerCase().includes(search) && !g.email.toLowerCase().includes(search)) return false;
@@ -187,33 +249,66 @@
         if (statusFilter !== "all" && statusFilter !== "not-sent" && g.status !== statusFilter) return false;
         if (emailFilter === "has-email" && !g.email) return false;
         if (emailFilter === "no-email" && g.email) return false;
+        if (sourceFilter !== "all" && g.source !== sourceFilter) return false;
         return true;
       });
     }
 
+    function getPageSize() {
+      return Number(document.getElementById("page-size").value);
+    }
+
+    function getPagedGuests(filtered) {
+      const size = getPageSize();
+      const start = currentPage * size;
+      return filtered.slice(start, start + size);
+    }
+
     function render() {
       const filtered = getFilteredGuests();
+      const paged = getPagedGuests(filtered);
       const tbody = document.getElementById("guest-table");
+      const pageSize = getPageSize();
+      const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+
+      // Clamp page
+      if (currentPage >= totalPages) currentPage = totalPages - 1;
 
       const total = guests.length;
       const withEmail = guests.filter((g) => g.email).length;
       const sent = guests.filter((g) => g.status === "sent").length;
       const pending = guests.filter((g) => g.status !== "sent" && g.email).length;
+      const linkedinAll = guests.filter((g) => g.source === "linkedin" && g.email);
+      const linkedinSent = linkedinAll.filter((g) => g.status === "sent").length;
+      const anissaAll = guests.filter((g) => g.source === "anissa" && g.email);
+      const anissaSent = anissaAll.filter((g) => g.status === "sent").length;
       document.getElementById("stats").textContent = `${total} guests \u00b7 ${withEmail} with email \u00b7 ${sent} sent \u00b7 ${pending} pending`;
 
-      tbody.innerHTML = filtered
+      // Progress bars
+      const liPct = linkedinAll.length ? Math.round((linkedinSent / linkedinAll.length) * 100) : 0;
+      const anPct = anissaAll.length ? Math.round((anissaSent / anissaAll.length) * 100) : 0;
+      document.getElementById("progress-linkedin-bar").style.width = liPct + "%";
+      document.getElementById("progress-linkedin-text").textContent = `${linkedinSent} / ${linkedinAll.length} sent (${liPct}%)`;
+      document.getElementById("progress-anissa-bar").style.width = anPct + "%";
+      document.getElementById("progress-anissa-text").textContent = `${anissaSent} / ${anissaAll.length} sent (${anPct}%)`;
+
+      const sourceLabel = { linkedin: "LinkedIn", anissa: "Anissa" };
+
+      tbody.innerHTML = paged
         .map((g) => {
           const hasCustomBody = !!g.body;
           const hasCustomSubject = !!g.subject;
-          const bodyPreview = hasCustomBody ? "Custom body" : `Default (Gentile ${getFirstName(g.name)})`;
+          const firstName = getFirstName(g.name);
+          const bodyPreview = hasCustomBody ? "Custom body" : `Default (${firstName ? `Gentile ${firstName}` : "Gentili Ospiti"})`;
           const subjectPreview = hasCustomSubject ? g.subject : "Default";
           const checked = selected.has(g.id) ? "checked" : "";
           const noEmail = !g.email ? "no-email" : "";
 
           return `<tr class="${noEmail}">
             <td class="cb-cell"><input type="checkbox" data-id="${g.id}" ${checked} ${!g.email ? "disabled" : ""}></td>
-            <td><a class="name-link" data-id="${g.id}">${g.name}</a></td>
-            <td>${g.email || "<span style='color:#d1d5db'>No email</span>"}</td>
+            <td><a class="name-link" data-id="${g.id}">${g.name || "<span style='color:#d1d5db'>No name</span>"}</a></td>
+            <td>${g.email ? `${g.emailType === "work" ? '<span title="Work email">\u{1F4BC}</span> ' : ""}${g.email}` : "<span style='color:#d1d5db'>No email</span>"}</td>
+            <td><span class="badge badge-${g.source}">${sourceLabel[g.source] || g.source}</span></td>
             <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${g.title || ""}</td>
             <td><span class="body-preview ${hasCustomSubject ? "custom" : ""}" style="max-width:180px">${subjectPreview}</span></td>
             <td><span class="body-preview ${hasCustomBody ? "custom" : ""}">${bodyPreview}</span></td>
@@ -223,6 +318,15 @@
           </tr>`;
         })
         .join("");
+
+      // Pagination info
+      const start = currentPage * pageSize + 1;
+      const end = Math.min((currentPage + 1) * pageSize, filtered.length);
+      document.getElementById("page-info").textContent = filtered.length > 0
+        ? `${start}\u2013${end} of ${filtered.length}`
+        : "No results";
+      document.getElementById("page-prev").disabled = currentPage === 0;
+      document.getElementById("page-next").disabled = currentPage >= totalPages - 1;
 
       updateSelectedCount();
     }
@@ -247,9 +351,9 @@
 
     // Select all
     document.getElementById("select-all").addEventListener("change", (e) => {
-      const filtered = getFilteredGuests().filter((g) => g.email);
-      if (e.target.checked) filtered.forEach((g) => selected.add(g.id));
-      else filtered.forEach((g) => selected.delete(g.id));
+      const paged = getPagedGuests(getFilteredGuests()).filter((g) => g.email);
+      if (e.target.checked) paged.forEach((g) => selected.add(g.id));
+      else paged.forEach((g) => selected.delete(g.id));
       render();
     });
 
@@ -261,10 +365,35 @@
       }
     });
 
-    // Filters
-    document.getElementById("search").addEventListener("input", render);
-    document.getElementById("filter-status").addEventListener("change", render);
-    document.getElementById("filter-email").addEventListener("change", render);
+    // Persist filters to localStorage
+    const FILTER_KEYS = ["search", "filter-status", "filter-email", "filter-source", "page-size"];
+    function saveFilters() {
+      const state = {};
+      FILTER_KEYS.forEach((id) => { state[id] = document.getElementById(id).value; });
+      localStorage.setItem("peppino-filters", JSON.stringify(state));
+    }
+    function restoreFilters() {
+      try {
+        const state = JSON.parse(localStorage.getItem("peppino-filters"));
+        if (!state) return;
+        FILTER_KEYS.forEach((id) => {
+          if (state[id] != null) document.getElementById(id).value = state[id];
+        });
+      } catch {}
+    }
+    restoreFilters();
+
+    // Filters (reset to page 0 on filter change)
+    function resetPageAndRender() { currentPage = 0; saveFilters(); render(); }
+    document.getElementById("search").addEventListener("input", resetPageAndRender);
+    document.getElementById("filter-status").addEventListener("change", resetPageAndRender);
+    document.getElementById("filter-email").addEventListener("change", resetPageAndRender);
+    document.getElementById("filter-source").addEventListener("change", resetPageAndRender);
+
+    // Pagination
+    document.getElementById("page-size").addEventListener("change", () => { saveFilters(); resetPageAndRender(); });
+    document.getElementById("page-prev").addEventListener("click", () => { currentPage--; render(); });
+    document.getElementById("page-next").addEventListener("click", () => { currentPage++; render(); });
 
     // Schedule Selected
     document.getElementById("btn-schedule").addEventListener("click", async () => {

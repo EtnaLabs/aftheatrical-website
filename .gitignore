@@ -6,3 +6,14 @@ other-websites/
 list-users.csv
 saisei-index.html
 .env
+
+# Local Cloudflare/wrangler state — never commit
+.wrangler/
+
+# Dependencies
+node_modules/
+
+# Private guest/contact data — never commit (public repo!)
+scripts/peppino-impastato-mailer/*.csv
+scripts/peppino-impastato-mailer/guests-data.json
+*.csv
