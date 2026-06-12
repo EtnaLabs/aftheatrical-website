@@ -161,5 +161,49 @@
         "requests": 22
       }
     }
+  },
+  {
+    "date": "2026-06-12",
+    "label": "round 3: 960w hero variants + tighter mobile sizes, deferred gtag, local webp company logos",
+    "url": "https://aftheatricals.com",
+    "tool": "lighthouse 13.4.0",
+    "mobile": {
+      "scores": {
+        "performance": 100,
+        "seo": 100,
+        "accessibility": 96,
+        "bestPractices": 100
+      },
+      "coreWebVitals": {
+        "firstContentfulPaint": "1.0 s",
+        "largestContentfulPaint": "1.7 s",
+        "totalBlockingTime": "10 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "2.3 s"
+      },
+      "pageWeight": {
+        "totalKB": 756,
+        "requests": 22
+      }
+    },
+    "desktop": {
+      "scores": {
+        "performance": 100,
+        "seo": 100,
+        "accessibility": 96,
+        "bestPractices": 100
+      },
+      "coreWebVitals": {
+        "firstContentfulPaint": "0.3 s",
+        "largestContentfulPaint": "0.4 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.3 s"
+      },
+      "pageWeight": {
+        "totalKB": 595,
+        "requests": 21
+      }
+    }
   }
 ]
