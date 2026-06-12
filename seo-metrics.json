@@ -1,0 +1,61 @@
+[
+  {
+    "date": "2026-06-12",
+    "label": "baseline (pre-optimization, live site before SEO fixes deployed)",
+    "url": "https://aftheatricals.com",
+    "tool": "lighthouse 13.4.0",
+    "mobile": {
+      "scores": {
+        "performance": 75,
+        "seo": 100,
+        "accessibility": 96,
+        "bestPractices": 96
+      },
+      "coreWebVitals": {
+        "firstContentfulPaint": "1.0 s",
+        "largestContentfulPaint": "15.8 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "1.9 s"
+      },
+      "pageWeight": {
+        "totalKB": 4141,
+        "requests": 19
+      }
+    },
+    "desktop": {
+      "scores": {
+        "performance": 99,
+        "seo": 100,
+        "accessibility": 96,
+        "bestPractices": 96
+      },
+      "coreWebVitals": {
+        "firstContentfulPaint": "0.3 s",
+        "largestContentfulPaint": "1.0 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.6 s"
+      },
+      "pageWeight": {
+        "totalKB": 4141,
+        "requests": 19
+      }
+    },
+    "seoChecklist": {
+      "analyticsInstalled": false,
+      "searchConsoleVerified": false,
+      "favicon": false,
+      "custom404": false,
+      "sitemapUrls": 1,
+      "structuredData": [
+        "Organization",
+        "TheaterEvent"
+      ],
+      "metaDescription": true,
+      "openGraph": true,
+      "canonical": true
+    },
+    "notes": "No analytics existed before this date. Guest-data CSV leak removed from public repo same day."
+  }
+]
