@@ -55,19 +55,17 @@ To upload anything new to R2:
 npx wrangler r2 object put af-theatricals-assets/assets/<path> --file=<local-file>
 ```
 
-## Mailer (scripts/peppino-impastato-mailer/)
+## Mailer (lives OUTSIDE this repo)
 
-Small Express app for sending event invites via Postmark.
+The Peppino Impastato mailer (Express + Postmark) was moved out of the repo to
+`/Users/federicoulfo/projects/peppino-impastato-mailer/` — it contains guest
+CSVs with personal data and must never come back into this public repo.
 
 ```sh
-cd scripts/peppino-impastato-mailer
-npm install
-POSTMARK_SERVER_TOKEN=... node server.js   # token lives in repo-root .env (gitignored)
+cd ~/projects/peppino-impastato-mailer
+node server.js   # POSTMARK_SERVER_TOKEN in its local .env
 # UI at http://localhost:3000
 ```
-
-Guest CSVs / `guests-data.json` are gitignored — keep them in
-`~/aftheatrical-private-data/` and copy in locally when needed.
 
 ## SEO upkeep
 
