@@ -117,5 +117,49 @@
       "openGraph": true,
       "canonical": true
     }
+  },
+  {
+    "date": "2026-06-12",
+    "label": "round 2: all images optimized to local WebP, single LCP priority hero, mailer moved out of repo",
+    "url": "https://aftheatricals.com",
+    "tool": "lighthouse 13.4.0",
+    "mobile": {
+      "scores": {
+        "performance": 79,
+        "seo": 100,
+        "accessibility": 96,
+        "bestPractices": 100
+      },
+      "coreWebVitals": {
+        "firstContentfulPaint": "1.0 s",
+        "largestContentfulPaint": "5.8 s",
+        "totalBlockingTime": "20 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "2.5 s"
+      },
+      "pageWeight": {
+        "totalKB": 1337,
+        "requests": 22
+      }
+    },
+    "desktop": {
+      "scores": {
+        "performance": 100,
+        "seo": 100,
+        "accessibility": 96,
+        "bestPractices": 100
+      },
+      "coreWebVitals": {
+        "firstContentfulPaint": "0.3 s",
+        "largestContentfulPaint": "0.4 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.5 s"
+      },
+      "pageWeight": {
+        "totalKB": 962,
+        "requests": 22
+      }
+    }
   }
 ]
