@@ -8,7 +8,7 @@ entire site (inline CSS + JS).
 
 | Piece | What / where |
 |---|---|
-| Site | `index.html` (single page, ~3,000 lines, inline styles/scripts) |
+| Site | `index.html` (single page, ~700 lines, inline styles/scripts) |
 | 404 page | `404.html` (GitHub Pages serves it automatically) |
 | Hosting | **GitHub Pages**, repo `EtnaLabs/aftheatrical-website`, `main` branch, custom domain via `CNAME` |
 | Large media | Cloudflare R2 bucket `af-theatricals-assets`, public URL `https://pub-43545990593741a6b5e64edec34eabee.r2.dev/...` |
@@ -35,6 +35,22 @@ Never commit guest lists, CSVs with personal data, tokens, or `.env` —
 `.gitignore` blocks the known offenders; keep it that way. Private data lives
 outside the repo in `~/aftheatrical-private-data/`.
 
+## Page behaviour (constrains layout edits)
+
+The page is a 7-section deck. Two things depend on that and will break quietly
+if sections are edited carelessly:
+
+1. **Scroll snapping** — above `901x620` each `section` is exactly `100svh` with
+   `scroll-snap-type: y mandatory` and `scroll-snap-stop: always`, so one flick
+   moves one page. Content that outgrows `100svh` gets clipped; after changing
+   copy or padding, check `section.scrollHeight <= section.clientHeight`.
+   Never put `overflow-x` on `html`/`body` — it makes them scroll containers and
+   silently kills snapping.
+2. **Parallax** — `[data-parallax]` images drift vertically and expand from
+   `scale(1.06)` to `scale(1.30)` as their section centres. The drift is clamped
+   each frame against the *current* scale so an image always covers its frame.
+   Every parallax image's parent must keep `overflow:hidden`.
+
 ## Images
 
 Heavy originals are uploaded to R2 and referenced by full `pub-….r2.dev` URLs.
@@ -45,10 +61,9 @@ npm install sharp          # one-off, anywhere
 node scripts/optimize-images.js   # reads .assets/, writes assets/optimized/
 ```
 
-Hero `<picture>` elements in `index.html` use
-`/assets/optimized/hero/<name>-{640,1280,1920}w.{avif,webp,jpg}`.
-When adding a new hero image, generate all nine variants and keep the
-`width`/`height` attributes on the `<img>` to avoid layout shift.
+`index.html` references `.webp` variants directly (no `<picture>`/`srcset`);
+hero images live at `/assets/optimized/hero/<name>-{640,960,1280,1920}w.webp`.
+Keep the `width`/`height` attributes on every `<img>` to avoid layout shift.
 
 To upload anything new to R2:
 ```sh
@@ -71,8 +86,7 @@ node server.js   # POSTMARK_SERVER_TOKEN in its local .env
 
 - `sitemap.xml`: bump `<lastmod>` on meaningful content changes.
 - `robots.txt` allows everything and points at the sitemap.
-- Structured data (JSON-LD `Organization` + `TheaterEvent`) is inline in
-  `index.html` — update the event schema when shows change.
+- Structured data (JSON-LD `Organization`) is inline in `index.html`.
 - GA4: https://analytics.google.com → account "AF Theatricals". Google Search
   Console is verified for the domain; submit `sitemap.xml` there after big changes.
 - Re-audit: run Lighthouse (`npx lighthouse https://aftheatricals.com --output=json`)
