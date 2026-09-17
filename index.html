@@ -307,6 +307,9 @@ header.bar img{width:auto;height:clamp(20px,2.4vw,26px);object-fit:contain}
 .card h3{color:var(--cream);text-align:center;margin-bottom:1.5rem}
 .card .body-copy{color:var(--cream)}
 .services-media{overflow:hidden;min-height:100%}
+/* pin the panel to the screen edge: the parallax zoom grows inward rather than
+   spilling past the right side, so the image's right edge never moves */
+.services-media > img{transform-origin:100% 50%}
 @media (max-width:1100px){.cards{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){
   .services{grid-template-columns:1fr}
@@ -320,12 +323,17 @@ header.bar img{width:auto;height:clamp(20px,2.4vw,26px);object-fit:contain}
 .trusted{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);background:var(--cream)}
 .logo-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:clamp(1.5rem,3.4vw,3.5rem) clamp(1.5rem,3vw,3rem);
-  align-items:center;justify-items:center;
-  padding:clamp(3rem,8vh,6rem) var(--gutter);
+  gap:clamp(.9rem,2.4vh,2.25rem) clamp(1rem,2.4vw,2.5rem);
+  align-items:center;justify-items:center;align-content:center;
+  padding:clamp(1.75rem,5vh,4rem) var(--gutter);
 }
+/* --w is each logo's width in the deck; one shared scale keeps the deck's
+   relative sizing, so a wide wordmark doesn't dwarf a tall stacked mark. */
+.logo-grid{--ls:clamp(.2px,.053vh,.48px)}
 .logo-grid img{
-  width:auto;max-width:100%;height:clamp(38px,4.6vw,72px);object-fit:contain;
+  width:calc(var(--w) * var(--ls));height:auto;
+  max-width:100%;
+  object-fit:contain;
   opacity:.88;transition:opacity .3s ease,transform .3s ease;
 }
 .logo-grid img:hover{opacity:1;transform:scale(1.04)}
@@ -590,15 +598,24 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
 <!-- ============ 6. TRUSTED BY ============ -->
 <section class="trusted" id="trusted">
   <div class="logo-grid">
-    <img src="/assets/optimized/companies/italian%20american%20museum.webp" alt="Italian American Museum" loading="lazy">
-    <img src="/assets/optimized/companies/solana.webp" alt="Solana" loading="lazy">
-    <img src="/assets/optimized/companies/aisocratic.webp" alt="AI Socratic" loading="lazy">
-    <img src="/assets/optimized/companies/westport%20country%20playhouse.webp" alt="Westport Country Playhouse" loading="lazy">
-    <img src="/assets/optimized/companies/sei-labs-foundation.webp" alt="SEI" loading="lazy">
-    <img src="/assets/optimized/companies/nyb.webp" alt="New York Theatre Ballet" loading="lazy">
-    <img src="/assets/optimized/companies/greycroft.webp" alt="Greycroft" loading="lazy">
-    <img src="/assets/optimized/companies/hadron.webp" alt="Hadron" loading="lazy">
-    <img src="/assets/optimized/companies/LRF-consulting.webp" alt="LRF Consulting" loading="lazy">
+    <img style="--w:469" src="/assets/optimized/brands/italian-american-museum.webp" alt="Italian American Museum" width="469" height="124" loading="lazy">
+    <img style="--w:528" src="/assets/optimized/brands/solana.webp" alt="Solana" width="528" height="80" loading="lazy">
+    <img style="--w:452" src="/assets/optimized/brands/south-park-commons.webp" alt="South Park Commons" width="452" height="150" loading="lazy">
+    <img style="--w:214" src="/assets/optimized/brands/westport-country-playhouse.webp" alt="Westport Country Playhouse" width="214" height="174" loading="lazy">
+    <img style="--w:447" src="/assets/optimized/brands/alibaba.webp" alt="Alibaba" width="447" height="59" loading="lazy">
+    <img style="--w:473" src="/assets/optimized/brands/ai-socratic.webp" alt="AI Socratic" width="473" height="124" loading="lazy">
+    <img style="--w:355" src="/assets/optimized/brands/new-york-theatre-ballet.webp" alt="New York Theatre Ballet" width="355" height="152" loading="lazy">
+    <img style="--w:648" src="/assets/optimized/brands/polygon.webp" alt="Polygon" width="648" height="148" loading="lazy">
+    <img style="--w:193" src="/assets/optimized/brands/junl.webp" alt="JUNL" width="193" height="147" loading="lazy">
+    <img style="--w:362" src="/assets/optimized/brands/becco-giallo.webp" alt="Becco Giallo" width="362" height="104" loading="lazy">
+    <img style="--w:315" src="/assets/optimized/brands/the-mu-shanghai.webp" alt="The Mu Shanghai" width="315" height="121" loading="lazy">
+    <img style="--w:220" src="/assets/optimized/brands/rho.webp" alt="Rho" width="220" height="98" loading="lazy">
+    <img style="--w:354" src="/assets/optimized/brands/bonsignore.webp" alt="Bonsignore Baglio e Vigne" width="354" height="194" loading="lazy">
+    <img style="--w:289" src="/assets/optimized/brands/sei.webp" alt="Sei" width="289" height="109" loading="lazy">
+    <img style="--w:494" src="/assets/optimized/brands/unicorn-factory-lisboa.webp" alt="Unicorn Factory Lisboa" width="494" height="79" loading="lazy">
+    <img style="--w:313" src="/assets/optimized/brands/norma.webp" alt="Gastronomia Norma Siciliana" width="313" height="160" loading="lazy">
+    <img style="--w:480" src="/assets/optimized/brands/greycroft.webp" alt="Greycroft" width="480" height="105" loading="lazy">
+    <img style="--w:236" src="/assets/optimized/brands/tech-week.webp" alt="Tech Week" width="236" height="149" loading="lazy">
   </div>
 
   <div class="trusted-panel">
