@@ -467,13 +467,13 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
   </div>
 
   <div class="hero-strip">
-    <figure><img data-parallax="0.10" src="/assets/optimized/hero/disco-640w.webp" alt="A guest holding a mirror ball at an AF Theatricals event" width="640" height="853" loading="eager"></figure>
-    <figure><img data-parallax="0.14" src="/assets/optimized/salon/319A9732.webp" alt="Candlelit table detail from a curated salon" width="640" height="853" loading="lazy"></figure>
-    <figure><img data-parallax="0.10" src="/assets/optimized/gallery/319A8872.webp" alt="Passed hors d'oeuvres at an AF Theatricals fundraiser" width="640" height="853" loading="lazy"></figure>
+    <figure><img data-parallax="0.05" data-spread="1.07" src="/assets/optimized/hero/deck-disco.webp" alt="A guest holding a mirror ball at an AF Theatricals event" width="820" height="807" loading="eager"></figure>
+    <figure><img data-parallax="0.05" data-spread="1.07" src="/assets/optimized/hero/deck-florals.webp" alt="A pastel floral arrangement built for a curated salon" width="820" height="807" loading="eager"></figure>
+    <figure><img data-parallax="0.05" data-spread="1.07" src="/assets/optimized/hero/deck-invitation.webp" alt="Invitation signage at a congressional campaign fundraiser" width="820" height="807" loading="eager"></figure>
   </div>
 
   <div class="hero-main">
-    <img data-parallax="0.09" src="/assets/optimized/gallery/319A8829.webp" alt="Deep red florals staged along a bar at a West Village fundraiser" width="1280" height="1600" loading="eager">
+    <img data-parallax="0.05" data-spread="1.07" src="/assets/optimized/hero/deck-bar.webp" alt="Deep red florals staged along a bar at a West Village fundraiser" width="1200" height="1863" loading="eager">
   </div>
 </section>
 
@@ -693,7 +693,8 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
   var st = items.map(function(el){
     return {el: el, frame: el.parentElement, page: el.closest('section') || el.parentElement,
             y: 0, yTgt: 0, s: S_REST, sTgt: S_REST, h: 0, on: true,
-            k: parseFloat(el.dataset.parallax) || 0.12};
+            k: parseFloat(el.dataset.parallax) || 0.12,
+            full: parseFloat(el.dataset.spread) || S_FULL};
   });
 
   function measure(){
@@ -710,7 +711,7 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
       var span = (vh + p.height) / 2;
       var t = span > 0 ? 1 - Math.min(1, Math.abs(p.top + p.height / 2 - mid) / span) : 1;
       t = t * t * (3 - 2 * t);          // ease in and out of the middle
-      o.sTgt = S_REST + (S_FULL - S_REST) * t;
+      o.sTgt = S_REST + (o.full - S_REST) * t;
     }
   }
 
