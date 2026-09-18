@@ -467,13 +467,13 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
   </div>
 
   <div class="hero-strip">
-    <figure><img data-parallax="0.05" data-spread="1.07" src="/assets/optimized/hero/deck-disco.webp" alt="A guest holding a mirror ball at an AF Theatricals event" width="820" height="807" loading="eager"></figure>
-    <figure><img data-parallax="0.05" data-spread="1.07" src="/assets/optimized/hero/deck-florals.webp" alt="A pastel floral arrangement built for a curated salon" width="820" height="807" loading="eager"></figure>
-    <figure><img data-parallax="0.05" data-spread="1.07" src="/assets/optimized/hero/deck-invitation.webp" alt="Invitation signage at a congressional campaign fundraiser" width="820" height="807" loading="eager"></figure>
+    <figure><img data-parallax="0.06" src="/assets/optimized/hero/deck-disco.webp" alt="A guest holding a mirror ball at an AF Theatricals event" width="1000" height="985" loading="eager"></figure>
+    <figure><img data-parallax="0.06" src="/assets/optimized/hero/deck-florals.webp" alt="A pastel floral arrangement built for a curated salon" width="1000" height="985" loading="eager"></figure>
+    <figure><img data-parallax="0.06" src="/assets/optimized/hero/deck-invitation.webp" alt="Invitation signage at a congressional campaign fundraiser" width="1000" height="985" loading="eager"></figure>
   </div>
 
   <div class="hero-main">
-    <img data-parallax="0.05" data-spread="1.07" src="/assets/optimized/hero/deck-bar.webp" alt="Deep red florals staged along a bar at a West Village fundraiser" width="1200" height="1863" loading="eager">
+    <img data-parallax="0.06" src="/assets/optimized/hero/deck-bar.webp" alt="Deep red florals staged along a bar at a West Village fundraiser" width="1400" height="2173" loading="eager">
   </div>
 </section>
 
@@ -497,7 +497,7 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
   </div>
 
   <div class="about-media">
-    <img data-parallax="0.10" src="/assets/optimized/gallery/319A8845.webp" alt="Anissa Felix hosting a fundraiser at The Golden Swan" width="1280" height="1600" loading="lazy">
+    <img data-parallax="0.10" src="/assets/optimized/gallery/319A8845@2x.webp" alt="Anissa Felix hosting a fundraiser at The Golden Swan" width="1440" height="2160" loading="lazy">
     <span class="about-tag">About</span>
     <span class="about-credit">SEI Development Fund campaign fundraiser</span>
   </div>
@@ -539,10 +539,10 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
 <!-- ============ 4. APPROACH ============ -->
 <section class="approach" id="approach">
   <div class="mosaic">
-    <figure><img data-parallax="0.11" src="/assets/optimized/gallery/319A8940.webp" alt="Guests mingling under green tile at The Golden Swan" width="900" height="600" loading="lazy"></figure>
+    <figure><img data-parallax="0.11" src="/assets/optimized/gallery/319A8940@2x.webp" alt="Guests mingling under green tile at The Golden Swan" width="1200" height="800" loading="lazy"></figure>
     <figure><img data-parallax="0.14" src="/assets/optimized/peppino/lemons.webp" alt="A sculptural lemon and anthurium centerpiece" width="600" height="600" loading="lazy"></figure>
-    <figure><img data-parallax="0.12" src="/assets/optimized/hero/hero2-640w.webp" alt="Autumn florals arranged in a silver urn" width="640" height="853" loading="lazy"></figure>
-    <figure><img data-parallax="0.11" src="/assets/optimized/gallery/AMM08374-Enhanced-NR%20copy.webp" alt="Guests in conversation at a curated salon" width="1200" height="800" loading="lazy"></figure>
+    <figure><img data-parallax="0.12" src="/assets/optimized/hero/hero2-1280w.webp" alt="Autumn florals arranged in a silver urn" width="1280" height="1921" loading="lazy"></figure>
+    <figure><img data-parallax="0.11" src="/assets/optimized/gallery/AMM08374@2x.webp" alt="Guests in conversation at a curated salon" width="1200" height="800" loading="lazy"></figure>
   </div>
 
   <div class="approach-word"><span>Approach</span></div>
@@ -619,7 +619,7 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
   </div>
 
   <div class="trusted-panel">
-    <img data-parallax="0.12" src="/assets/optimized/hero/hero3-960w.webp" alt="" aria-hidden="true" loading="lazy">
+    <img data-parallax="0.12" src="/assets/optimized/hero/hero3-1280w.webp" alt="" aria-hidden="true" loading="lazy">
     <span>Trusted by<br>global brands</span>
   </div>
 </section>
@@ -628,7 +628,7 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
 <section class="contact" id="contact">
   <div class="contact-grid">
   <div class="contact-media">
-    <img data-parallax="0.10" src="/assets/optimized/gallery/Westport-Country-Playhouse-A-Sherlock-Carol-1.jpg.webp" alt="A lone performer on a lamplit stage" width="1000" height="1250" loading="lazy">
+    <img data-parallax="0.07" src="/assets/optimized/hero/deck-contact.webp" alt="Anissa Felix, founder of AF Theatricals" width="1007" height="1300" loading="lazy">
     <span>Contact</span>
   </div>
 
@@ -677,24 +677,25 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
 
-  // Images drift against their frame AND expand as their section reaches the
-  // middle of the screen, so the page you land on is the one at full spread.
-  var S_REST = 1.06;                    // parked, off to the side
-  var S_FULL = 1.30;                    // centred, widest
-  var SAFE   = 0.92;                    // keep the drift inside the overscan
+  // Images are wide and offset while their page is in transit, then contract
+  // and settle as it arrives — so a page you are looking at is always showing
+  // its photographs at their true framing, held still.
+  var S_SETTLE = 1.06;                  // at rest: the framing, barely overscanned
+  var S_MOVE   = 1.22;                  // in transit: wider
+  var SAFE     = 0.92;                  // keep the drift inside the overscan
   var items  = [].slice.call(document.querySelectorAll('[data-parallax]'));
   var still  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!items.length || still) {
-    items.forEach(function(el){ el.style.transform = 'scale(1.12)'; });
+    items.forEach(function(el){ el.style.transform = 'scale(' + S_SETTLE + ')'; });
     return;
   }
 
   var st = items.map(function(el){
     return {el: el, frame: el.parentElement, page: el.closest('section') || el.parentElement,
-            y: 0, yTgt: 0, s: S_REST, sTgt: S_REST, h: 0, on: true,
+            y: 0, yTgt: 0, s: S_MOVE, sTgt: S_SETTLE, h: 0, on: true,
             k: parseFloat(el.dataset.parallax) || 0.12,
-            full: parseFloat(el.dataset.spread) || S_FULL};
+            move: parseFloat(el.dataset.spread) || S_MOVE};
   });
 
   function measure(){
@@ -706,23 +707,33 @@ footer .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
       // drift: per-frame, so images on the same page move at different rates
       o.yTgt = (r.top + r.height / 2 - mid) * o.k * -1;
       o.on = r.bottom > -150 && r.top < vh + 150;
-      // spread: per-section, so a whole page opens up together
+      // settle: per-section, so a whole page comes to rest together
       var p = o.page.getBoundingClientRect();
       var span = (vh + p.height) / 2;
       var t = span > 0 ? 1 - Math.min(1, Math.abs(p.top + p.height / 2 - mid) / span) : 1;
       t = t * t * (3 - 2 * t);          // ease in and out of the middle
-      o.sTgt = S_REST + (o.full - S_REST) * t;
+      o.sTgt = o.move + (S_SETTLE - o.move) * t;
     }
   }
 
   measure();
-  (function frame(){
+  // the opening: first paint starts wide and slightly low, then settles in
+  for (var n = 0; n < st.length; n++) {
+    st[n].s = st[n].move;
+    st[n].y = st[n].yTgt + st[n].h * 0.035;
+  }
+
+  var t0 = 0;
+  (function frame(now){
+    // ease the first beat more slowly so the page opens rather than snaps
+    var e = (t0 && now - t0 < 1000) ? 0.05 : 0.09;
+    if (!t0) t0 = now || 1;
     for (var i = 0; i < st.length; i++) {
       var o = st[i];
       if (!o.on) { o.y = o.yTgt; o.s = o.sTgt; }
       else {
-        o.y += (o.yTgt - o.y) * 0.09;
-        o.s += (o.sTgt - o.s) * 0.09;
+        o.y += (o.yTgt - o.y) * e;
+        o.s += (o.sTgt - o.s) * e;
       }
       // clamp against the CURRENT scale — as the image narrows back down,
       // the drift has to come in with it or an edge would show.
